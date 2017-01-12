@@ -1,0 +1,13 @@
+{
+  "name": "tunables-gtav",
+  "version": "1.0.0",
+  "description": "Downloads and decrypts the latest tunables file.",
+  "main": "index.js",
+  "author": "ECB2",
+  "license": "MIT",
+  "dependencies": {
+    "aes-js": "^2.1.0",
+    "http-request": "^0.7.0",
+    "js-beautify": "^1.6.4"
+  }
+}
