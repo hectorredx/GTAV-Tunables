@@ -3,7 +3,7 @@ var fs          = require('fs');
 var util        = require('./util');
 var aesjs       = require('aes-js');
 var beautify    = require('js-beautify').js_beautify;
-var key 		= "F06F12F49B843DADE4A7BE053505B19C9E415C95D93753450A269144D59A0115";
+var key         = "F06F12F49B843DADE4A7BE053505B19C9E415C95D93753450A269144D59A0115";
 
 console.log('Fetching latest tunables...');
 
