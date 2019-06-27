@@ -1,5 +1,5 @@
 const fs = require('fs');
-const http = require('./lwp');
+const http = require('http-wrapper');
 const beautify = require('js-beautify').js_beautify;
 const aesjs = require('aes-js');
 const key = Buffer.from('F06F12F49B843DADE4A7BE053505B19C9E415C95D93753450A269144D59A0115', 'hex');
