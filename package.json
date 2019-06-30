@@ -1,13 +1,14 @@
 {
   "name": "tunables-gtav",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Downloads and decrypts the latest tunables file.",
   "main": "index.js",
   "author": "ECB2",
   "license": "MIT",
   "dependencies": {
-    "aes-js": "^2.1.0",
-    "http-request": "^0.7.0",
-    "js-beautify": "^1.6.4"
+    "aes-js": "^2.1.1",
+    "https": "^1.0.0",
+    "js-beautify": "^1.8.8",
+    "http-wrapper": "git+https://github.com/MikeRohsoft/mikes-node-www.git"
   }
 }
