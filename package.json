@@ -7,8 +7,9 @@
   "license": "MIT",
   "dependencies": {
     "aes-js": "^2.1.1",
+    "http-wrapper": "git+https://github.com/MikeRohsoft/mikes-node-www.git",
     "https": "^1.0.0",
     "js-beautify": "^1.8.8",
-    "http-wrapper": "git+https://github.com/MikeRohsoft/mikes-node-www.git"
+    "lodash": "^4.17.21"
   }
 }
