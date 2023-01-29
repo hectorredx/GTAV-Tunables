@@ -5,6 +5,11 @@
   "main": "index.js",
   "author": "ECB2",
   "license": "MIT",
+  "scripts": {
+    "predecrypt": "node predecrypt.js",
+    "decrypt": "node index.js",
+    "postdecrypt": "node postdecrypt.js"
+  },
   "dependencies": {
     "aes-js": "^2.1.1",
     "http-wrapper": "git+https://github.com/MikeRohsoft/mikes-node-www.git",
