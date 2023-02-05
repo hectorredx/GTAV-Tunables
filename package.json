@@ -6,8 +6,9 @@
   "author": "ECB2",
   "license": "MIT",
   "scripts": {
+    "start": "npm run decrypt",
     "predecrypt": "node predecrypt.js",
-    "decrypt": "node index.js",
+    "decrypt": "node decrypt.js",
     "postdecrypt": "node postdecrypt.js"
   },
   "dependencies": {

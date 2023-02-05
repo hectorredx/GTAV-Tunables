@@ -7,11 +7,10 @@ const tunableNamesUrl = 'https://raw.githubusercontent.com/Wildbrick142/V-Tunabl
 
 const dictionary = {};
 
-console.log('Preparing Tunables Dictionary...')
 http.get(tunableNamesUrl).then((response) => {
     response.content.toString().split(/\r?\n/).forEach(line => {
         if (line.length) dictionary[line] = joaat(line).hex
     });
     if (Object.keys(dictionary).length) fs.writeFileSync('dictionary.json', beautify(JSON.stringify(dictionary)));
-    console.log('Done!')
+    console.log('Tunables Dictionary downloaded')
 })

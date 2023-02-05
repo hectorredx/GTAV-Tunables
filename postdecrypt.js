@@ -45,14 +45,14 @@ let tunablesData = {};
 let tunablesDataDecrypted = {};
 
 const filenameIn = `tunables-encrypted.json`;
-const filenameOut = `tunables-${new Date().getTime()}.json`;
+const filenameOut = `tunables-decrypted.json`;
 
 const tunablesFileRawData = fs.readFileSync(filenameIn);
 tunablesData = JSON.parse(tunablesFileRawData);
 tunablesDataDecrypted = { ...tunablesData, tunables: {} };
 let notFound = [];
 
-console.log('Number of Tunables = ', Object.keys(tunablesData.tunables).length);
+console.log('Total encrypted tunables = ', Object.keys(tunablesData.tunables).length);
 Object.keys(tunablesData.tunables).forEach(async key => {
     let checkIndex = 0;
     let fallbacks = [];
@@ -81,11 +81,9 @@ Object.keys(tunablesData.tunables).forEach(async key => {
         checkIndex++;
     }
 });
-console.log('Done!\nBeautifing it...');
-console.log('Done!\nWriting to File ...');
 console.log('Total decrypted tunables = ', Object.keys(tunablesDataDecrypted.tunables.BASE_GLOBALS).length + Object.keys(tunablesDataDecrypted.tunables.MP_Global).length)
 notFound = _uniqWith(notFound, _isEqual);
-console.log('Not found: ', notFound.length);
-fs.writeFile(filenameOut, beautify(JSON.stringify(tunablesDataDecrypted)), null, () => console.log(`Done!\n${filenameOut}`));
+console.log('Total not found tunables = ', notFound.length);
+fs.writeFile(filenameOut, beautify(JSON.stringify(tunablesDataDecrypted)), null, () => console.log('Done!'));
 fs.writeFile('tunables-not-found.json', beautify(JSON.stringify(notFound)), null, () => console.log(''));
 // fs.unlinkSync(filenameIn)
