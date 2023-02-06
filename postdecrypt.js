@@ -36,7 +36,7 @@ const TUNABLE_CONTEXT = {
 };
 const TUNABLE_CONTEXT_VALUES = Object.values(TUNABLE_CONTEXT);
 
-const TUNEABLES_PROCESSING_FILE_PATH = "D:\\d\\GTA\\decompiled_scripts\\1.64\\tuneables_processing.c";
+const TUNEABLES_PROCESSING_FILE_PATH = "tuneables_processing.c";
 const tuneablesProcessingRawData = fs.readFileSync(TUNEABLES_PROCESSING_FILE_PATH);
 
 const dictionaryFileRawData = fs.readFileSync('dictionary.json');
