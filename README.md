@@ -15,4 +15,4 @@ npm start
 # Output files of 07 February 2023
 - [Encrypted Tunables](output/tunables-encrypted.json)
 - [Decrypted Tunables](output/tunables-decrypted.json)
-- [Not Decrypted Tunables](output/tunables-not-found.json.json)
+- [Not Decrypted Tunables](output/tunables-not-found.json)
