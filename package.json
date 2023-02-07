@@ -7,9 +7,9 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run decrypt",
-    "predecrypt": "node scritps/predecrypt.js",
-    "decrypt": "node scritps/decrypt.js",
-    "postdecrypt": "node scritps/postdecrypt.js"
+    "predecrypt": "node scripts/predecrypt.js",
+    "decrypt": "node scripts/decrypt.js",
+    "postdecrypt": "node scripts/postdecrypt.js"
   },
   "dependencies": {
     "aes-js": "^2.1.1",
