@@ -57,13 +57,13 @@ tunablesData.contentlists[0].forEach((_, i) => {
 let totalDecryptedTunables = 0;
 let notFound = [];
 console.log('Decrypting ...');
-Object.keys(tunablesData.tunables).forEach(async key => {
+for (const [key, value] of Object.entries(tunablesData.tunables)) {
     let found = false;
     for (const [contextKey, contextValue] of Object.entries(TUNABLE_CONTEXT)) {
         const hash = parseInt(key, 16) - contextValue;
         const tunableName = _findKey(dictionary, (x) => [x.signed, x.unsigned].includes(hash));
         if (tunableName) {
-            _set(tunablesDataDecrypted.tunables, `${contextKey}.${tunableName}`, tunablesData.tunables[key]);
+            _set(tunablesDataDecrypted.tunables, `${contextKey}.${tunableName}`, value);
             found = true;
             totalDecryptedTunables++;
             break;
@@ -74,7 +74,7 @@ Object.keys(tunablesData.tunables).forEach(async key => {
         const hashUnsigned = parseInt(key, 16) - contextDynamicValue.unsigned;
         const tunableName = _findKey(dictionary, (x) => x.signed === hashSigned || x.unsigned === hashUnsigned);
         if (tunableName) {
-            _set(tunablesDataDecrypted.tunables, `${contextDynamicKey}.${tunableName}`, tunablesData.tunables[key]);
+            _set(tunablesDataDecrypted.tunables, `${contextDynamicKey}.${tunableName}`, value);
             found = true;
             totalDecryptedTunables++;
             break;
@@ -83,7 +83,7 @@ Object.keys(tunablesData.tunables).forEach(async key => {
     if (!found && !Object.keys(notFound).includes(key)) notFound.push({
         [key]: tunablesData.tunables[key]
     });
-});
+};
 console.log('\nTotal encrypted tunables = ', Object.keys(tunablesData.tunables).length);
 console.log('Total decrypted tunables = ', totalDecryptedTunables);
 console.log('Total not found tunables = ', notFound.length);
