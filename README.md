@@ -1,5 +1,3 @@
-Tool to decrypt 90% of the Rockstar Games GTA5 tunables file to human readable language.
-
 # Getting Started
 ```
 # 1. clone the repo
@@ -13,3 +11,8 @@ npm start
 
 # 4. Checkout the decrypted file which is saved as "tunables-decrypted.json"
 ```
+
+# Output files of 07 February 2023
+- [Encrypted Tunables](output/tunables-encrypted.json)
+- [Decrypted Tunables](output/tunables-decrypted.json)
+- [Not Decrypted Tunables](output/tunables-not-found.json.json)
