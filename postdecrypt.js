@@ -56,8 +56,7 @@ tunablesData.contentlists[0].forEach((_, i) => {
 });
 let totalDecryptedTunables = 0;
 let notFound = [];
-
-console.log('Total encrypted tunables = ', Object.keys(tunablesData.tunables).length);
+console.log('Decrypting ...');
 Object.keys(tunablesData.tunables).forEach(async key => {
     let found = false;
     for (const [contextKey, contextValue] of Object.entries(TUNABLE_CONTEXT)) {
@@ -85,7 +84,8 @@ Object.keys(tunablesData.tunables).forEach(async key => {
         [key]: tunablesData.tunables[key]
     });
 });
+console.log('\nTotal encrypted tunables = ', Object.keys(tunablesData.tunables).length);
 console.log('Total decrypted tunables = ', totalDecryptedTunables);
 console.log('Total not found tunables = ', notFound.length);
-fs.writeFile(FILE_NAME_OUT, beautify(JSON.stringify(tunablesDataDecrypted)), null, () => console.log('Done!'));
+fs.writeFile(FILE_NAME_OUT, beautify(JSON.stringify(tunablesDataDecrypted)), null, () => console.log('\nDone!'));
 fs.writeFile(FILE_NAME_NOT_FOUND, beautify(JSON.stringify(notFound)), null, () => console.log(''));
