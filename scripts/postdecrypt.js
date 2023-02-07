@@ -2,7 +2,7 @@ const fs = require('fs');
 const beautify = require('js-beautify').js_beautify;
 const _findKey = require('lodash').findKey;
 const _set = require('lodash').set;
-const joaat = require('./lib/joaat');
+const joaat = require('../lib/joaat');
 
 const FILE_NAME_IN = `tunables-encrypted.json`;
 const FILE_NAME_OUT = `tunables-decrypted.json`;
@@ -43,12 +43,12 @@ const TUNABLE_CONTEXT = {
 };
 const TUNABLE_DYNAMIC_CONTEXT_CONTENT_MODIFIER = {};
 
-const dictionaryFileRawData = fs.readFileSync(FILE_NAME_DICTIONARY);
+const dictionaryFileRawData = fs.readFileSync(`output/${FILE_NAME_DICTIONARY}`);
 const dictionary = JSON.parse(dictionaryFileRawData);
 let tunablesData = {};
 let tunablesDataDecrypted = {};
 
-const tunablesFileRawData = fs.readFileSync(FILE_NAME_IN);
+const tunablesFileRawData = fs.readFileSync(`output/${FILE_NAME_IN}`);
 tunablesData = JSON.parse(tunablesFileRawData);
 tunablesDataDecrypted = { ...tunablesData, tunables: {} };
 tunablesData.contentlists[0].forEach((_, i) => {
@@ -87,5 +87,6 @@ Object.keys(tunablesData.tunables).forEach(async key => {
 console.log('\nTotal encrypted tunables = ', Object.keys(tunablesData.tunables).length);
 console.log('Total decrypted tunables = ', totalDecryptedTunables);
 console.log('Total not found tunables = ', notFound.length);
-fs.writeFile(FILE_NAME_OUT, beautify(JSON.stringify(tunablesDataDecrypted)), null, () => console.log('\nDone!'));
-fs.writeFile(FILE_NAME_NOT_FOUND, beautify(JSON.stringify(notFound)), null, () => console.log(''));
+fs.writeFile(`output/${FILE_NAME_OUT}`, beautify(JSON.stringify(tunablesDataDecrypted)), null, () => console.log('\nDone!'));
+fs.writeFile(`output/${FILE_NAME_NOT_FOUND}`, beautify(JSON.stringify(notFound)), null, () => console.log(''));
+fs.unlinkSync(`output/${FILE_NAME_DICTIONARY}`);

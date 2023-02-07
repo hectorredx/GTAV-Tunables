@@ -18,5 +18,5 @@ http.get(url).then(res => {
     const filename = 'tunables-encrypted.json';
     let decrypted = decryptTunables(res.content);
     const beautified = beautify(decrypted);
-    fs.writeFile(filename, beautified, null, () => console.log('Encrypted Tunables downloaded'));
+    fs.writeFile(`output/${filename}`, beautified, null, () => console.log('Encrypted Tunables downloaded'));
 });
