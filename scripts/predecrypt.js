@@ -2,16 +2,17 @@ const fs = require('fs');
 const http = require('http-wrapper');
 const beautify = require('js-beautify').js_beautify;
 const joaat = require('../lib/joaat');
-
-const filename = 'dictionary.json';
-const tunableNamesUrl = 'https://raw.githubusercontent.com/Wildbrick142/V-Tunable-Names/main/tunable_list.txt';
+const CONFIG = require('../config');
 
 const dictionary = {};
 
-http.get(tunableNamesUrl).then((response) => {
+http.get(CONFIG.URLS.TUNABLE_NAMES).then((response) => {
     response.content.toString().split(/\r?\n/).forEach(line => {
         if (line.length) dictionary[line] = joaat(line);
     });
-    if (Object.keys(dictionary).length) fs.writeFileSync(`output/${filename}`, beautify(JSON.stringify(dictionary)));
-    console.log('Tunables Dictionary downloaded');
+    if (Object.keys(dictionary).length) fs.writeFile(`output/${CONFIG.FILE_NAMES.DICTIONARY}`, beautify(JSON.stringify(dictionary)), () => console.log('Tunables Dictionary downloaded'));;
+});
+
+http.get(CONFIG.URLS.TUNEABLES_PROCESSING).then((response) => {
+    fs.writeFile(`output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`, response.content.toString(), () => console.log('Tunables Processing downloaded'));
 });
