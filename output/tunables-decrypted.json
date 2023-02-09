@@ -3,10 +3,14 @@
     "format": 1,
     "poolSize": 2200,
     "contentlists": [
-        [-1234887601, 676830889, -188225133, 620879429, -1712482258]
+        [1302174541, 904762509, 1910508593, 2093435350, 1330683320, 1629270835, 1047250590, -626534389, 1051567406, -1039969555],
+        [1484980157, -1617704189, -1372210985, 1281609986, 186092234, 168156036, -568442182]
     ],
     "tunables": {
         "BASE_GLOBALS": {
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_6": [{
+                "value": -1183893300
+            }],
             "ENABLE_TRANSFORM_VIRTUE": [{
                 "value": false
             }],
@@ -14,10 +18,13 @@
                 "value": 0
             }],
             "CAR_MEET_PRIZE_VEHICLE_CHALLENGE_PARAM_TWO": [{
-                "value": 3
+                "value": 2
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_26_PROFESSIONAL_9": [{
                 "value": 0
+            }],
+            "FEMALEUPPERS_VALENTINES2016_BLACK_COLUMN_DRESS": [{
+                "value": 4842
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_8_PROFESSIONAL_4": [{
                 "value": -1534863254
@@ -34,8 +41,14 @@
             "FIXER_SECURITY_CONTRACT_MAX_REWARD1": [{
                 "value": 56000
             }],
+            "TURN_ON_VALENTINE_WEAPON": [{
+                "value": true
+            }],
             "NPCFLOWINVITETIMEUNTILINVITEINSECONDS": [{
                 "value": 1502
+            }],
+            "CH_CABINET_RACROCKET_SALE_PRICE": [{
+                "value": 192500
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_5_PROFESSIONAL_2": [{
                 "value": -2097601644
@@ -50,7 +63,7 @@
                 "value": 10
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_13_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FORCEMAXCAPHITTODAY": [{
                 "value": true
@@ -74,13 +87,13 @@
                 "value": 0.7
             }],
             "CAR_MEET_PRIZE_VEHICLE_COORD_OFFSET_Y": [{
-                "value": -2.4
+                "value": -1.66
             }],
             "CAR_MEET_PRIZE_VEHICLE_COORD_OFFSET_Z": [{
-                "value": 0.835
+                "value": 0.845
             }],
             "CAR_MEET_PRIZE_VEHICLE_ROTATION_OFFSET_X": [{
-                "value": -7.3
+                "value": -4.2
             }],
             "FIXER_SECURITY_CONTRACT_MIN_REWARD0": [{
                 "value": 31000
@@ -110,25 +123,25 @@
                 "value": 0
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_0_PROFESSIONAL_17": [{
-                "value": 392002775
+                "value": 1484980157
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_1_PROFESSIONAL_17": [{
-                "value": -667993866
+                "value": -1617704189
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_2_PROFESSIONAL_17": [{
-                "value": -830644354
+                "value": -1372210985
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_3_PROFESSIONAL_17": [{
-                "value": -1247326366
+                "value": 1281609986
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_4_PROFESSIONAL_17": [{
-                "value": -235387561
+                "value": 186092234
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_5_PROFESSIONAL_17": [{
-                "value": -884401151
+                "value": 168156036
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_6_PROFESSIONAL_17": [{
-                "value": 1307611701
+                "value": -1739667840
             }],
             "FM_CORONA_PLAYLIST_LENGTH_PROFESSIONAL_17": [{
                 "value": 7
@@ -674,25 +687,25 @@
                 "value": 7
             }],
             "CAR_MEET_PRIZE_VEHICLE_CHALLENGE_ID": [{
-                "value": 0
+                "value": 2
             }],
             "CAR_MEET_PRIZE_VEHICLE_CHALLENGE_PARAM_ONE": [{
-                "value": 5
+                "value": 1
             }],
             "CAR_MEET_PRIZE_VEHICLE_ITERATION": [{
-                "value": 79
+                "value": 80
             }],
             "CASINO_PRIZE_VEHICLE_MODEL_HASH": [{
-                "value": -2098947590
+                "value": 117401876
             }],
             "CASINO_PRIZE_VEHICLE_COLOUR_1": [{
-                "value": 72
+                "value": 61
             }],
             "CASINO_PRIZE_VEHICLE_COLOUR_2": [{
-                "value": 0
+                "value": 95
             }],
             "CASINO_PRIZE_VEHICLE_EXTRA_COLOUR_1": [{
-                "value": 64
+                "value": 63
             }],
             "CASINO_PRIZE_VEHICLE_EXTRA_COLOUR_2": [{
                 "value": 156
@@ -707,16 +720,16 @@
                 "value": 0
             }],
             "CAR_MEET_PRIZE_VEHICLE_MODEL_HASH": [{
-                "value": 469291905
+                "value": 686471183
             }],
             "CAR_MEET_PRIZE_VEHICLE_COLOUR_1": [{
-                "value": 111
+                "value": 146
             }],
             "CAR_MEET_PRIZE_VEHICLE_COLOUR_2": [{
                 "value": 111
             }],
             "CAR_MEET_PRIZE_VEHICLE_EXTRA_COLOUR_1": [{
-                "value": 91
+                "value": 145
             }],
             "CAR_MEET_PRIZE_VEHICLE_EXTRA_COLOUR_2": [{
                 "value": 111
@@ -728,10 +741,10 @@
                 "value": 132
             }],
             "CAR_MEET_PRIZE_VEHICLE_LIVERY": [{
-                "value": 0
+                "value": 2
             }],
             "CAR_MEET_PRIZE_VEHICLE_WHEEL_TYPE": [{
-                "value": 3
+                "value": 7
             }],
             "CAR_MEET_PRIZE_VEHICLE_WHEEL_ID": [{
                 "value": 0
@@ -743,37 +756,37 @@
                 "value": 0
             }],
             "PROMO_TEST_DRIVE_VEHICLE_1_MODEL_HASH": [{
-                "value": 1887331236
+                "value": -1540373595
             }],
             "PROMO_TEST_DRIVE_VEHICLE_1_COLOUR_1": [{
-                "value": 28
+                "value": 147
             }],
             "PROMO_TEST_DRIVE_VEHICLE_1_COLOUR_2": [{
-                "value": 12
+                "value": 37
             }],
             "PROMO_TEST_DRIVE_VEHICLE_1_EXTRA_COLOUR_1": [{
-                "value": 28
+                "value": 4
             }],
             "PROMO_TEST_DRIVE_VEHICLE_1_EXTRA_COLOUR_2": [{
-                "value": 156
+                "value": 3
             }],
             "PROMO_TEST_DRIVE_VEHICLE_1_COLOUR_6": [{
                 "value": 132
             }],
             "PROMO_TEST_DRIVE_VEHICLE_1_LIVERY": [{
-                "value": 0
+                "value": 5
             }],
             "PROMO_TEST_DRIVE_VEHICLE_2_MODEL_HASH": [{
-                "value": -433375717
+                "value": 426742808
             }],
             "PROMO_TEST_DRIVE_VEHICLE_2_COLOUR_1": [{
-                "value": 53
+                "value": 50
             }],
             "PROMO_TEST_DRIVE_VEHICLE_2_COLOUR_2": [{
-                "value": 0
+                "value": 12
             }],
             "PROMO_TEST_DRIVE_VEHICLE_2_EXTRA_COLOUR_1": [{
-                "value": 59
+                "value": 53
             }],
             "PROMO_TEST_DRIVE_VEHICLE_2_EXTRA_COLOUR_2": [{
                 "value": 156
@@ -785,22 +798,22 @@
                 "value": 132
             }],
             "PROMO_TEST_DRIVE_VEHICLE_2_LIVERY": [{
-                "value": 0
+                "value": 6
             }],
             "PROMO_TEST_DRIVE_VEHICLE_3_MODEL_HASH": [{
-                "value": 1104234922
+                "value": 1377217886
             }],
             "PROMO_TEST_DRIVE_VEHICLE_3_COLOUR_1": [{
-                "value": 27
+                "value": 96
             }],
             "PROMO_TEST_DRIVE_VEHICLE_3_COLOUR_2": [{
-                "value": 4
+                "value": 37
             }],
             "PROMO_TEST_DRIVE_VEHICLE_3_EXTRA_COLOUR_1": [{
-                "value": 36
+                "value": 95
             }],
             "PROMO_TEST_DRIVE_VEHICLE_3_EXTRA_COLOUR_2": [{
-                "value": 0
+                "value": 6
             }],
             "PROMO_TEST_DRIVE_VEHICLE_3_COLOUR_5": [{
                 "value": 1
@@ -809,31 +822,31 @@
                 "value": 132
             }],
             "PROMO_TEST_DRIVE_VEHICLE_3_LIVERY": [{
-                "value": 9
+                "value": 3
             }],
             "LUXURY_SHOWCASE_VEHICLE_1_MODEL_HASH": [{
-                "value": -1728685474
+                "value": 394110044
             }],
             "LUXURY_SHOWCASE_VEHICLE_1_COLOUR_1": [{
-                "value": 35
+                "value": 8
             }],
             "LUXURY_SHOWCASE_VEHICLE_1_COLOUR_2": [{
-                "value": 5
-            }],
-            "LUXURY_SHOWCASE_VEHICLE_1_EXTRA_COLOUR_1": [{
                 "value": 0
             }],
+            "LUXURY_SHOWCASE_VEHICLE_1_EXTRA_COLOUR_1": [{
+                "value": 5
+            }],
             "LUXURY_SHOWCASE_VEHICLE_1_EXTRA_COLOUR_2": [{
-                "value": 156
+                "value": 21
             }],
             "LUXURY_SHOWCASE_VEHICLE_1_COLOUR_5": [{
                 "value": 1
             }],
             "LUXURY_SHOWCASE_VEHICLE_1_LIVERY": [{
-                "value": 3
+                "value": 0
             }],
             "LUXURY_SHOWCASE_VEHICLE_1_WHEEL_TYPE": [{
-                "value": 7
+                "value": 2
             }],
             "LUXURY_SHOWCASE_VEHICLE_1_WHEEL_ID": [{
                 "value": 0
@@ -845,16 +858,16 @@
                 "value": 0
             }],
             "LUXURY_SHOWCASE_VEHICLE_2_MODEL_HASH": [{
-                "value": 408192225
+                "value": -1660945322
             }],
             "LUXURY_SHOWCASE_VEHICLE_2_COLOUR_1": [{
-                "value": 141
+                "value": 54
             }],
             "LUXURY_SHOWCASE_VEHICLE_2_COLOUR_2": [{
-                "value": 11
+                "value": 12
             }],
             "LUXURY_SHOWCASE_VEHICLE_2_EXTRA_COLOUR_1": [{
-                "value": 73
+                "value": 60
             }],
             "LUXURY_SHOWCASE_VEHICLE_2_EXTRA_COLOUR_2": [{
                 "value": 156
@@ -866,10 +879,10 @@
                 "value": 132
             }],
             "LUXURY_SHOWCASE_VEHICLE_2_LIVERY": [{
-                "value": 7
+                "value": 8
             }],
             "LUXURY_SHOWCASE_VEHICLE_2_WHEEL_TYPE": [{
-                "value": 7
+                "value": 1
             }],
             "LUXURY_SHOWCASE_VEHICLE_2_WHEEL_ID": [{
                 "value": 0
@@ -881,19 +894,19 @@
                 "value": 0
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_1_MODEL_HASH": [{
-                "value": -1756021720
+                "value": -602287871
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_1_COLOUR_1": [{
-                "value": 100
+                "value": 107
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_1_COLOUR_2": [{
-                "value": 0
+                "value": 34
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_1_EXTRA_COLOUR_1": [{
-                "value": 100
+                "value": 107
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_1_EXTRA_COLOUR_2": [{
-                "value": 0
+                "value": 156
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_1_COLOUR_5": [{
                 "value": 1
@@ -902,10 +915,10 @@
                 "value": 132
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_1_LIVERY": [{
-                "value": 5
+                "value": 0
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_1_WHEEL_TYPE": [{
-                "value": 3
+                "value": 2
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_1_WHEEL_ID": [{
                 "value": 0
@@ -917,19 +930,19 @@
                 "value": 0
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_2_MODEL_HASH": [{
-                "value": -1758137366
+                "value": -1933242328
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_2_COLOUR_1": [{
-                "value": 2
+                "value": 68
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_2_COLOUR_2": [{
-                "value": 4
+                "value": 112
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_2_EXTRA_COLOUR_1": [{
-                "value": 5
+                "value": 68
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_2_EXTRA_COLOUR_2": [{
-                "value": 156
+                "value": 0
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_2_COLOUR_5": [{
                 "value": 1
@@ -938,10 +951,10 @@
                 "value": 132
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_2_LIVERY": [{
-                "value": 0
+                "value": 7
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_2_WHEEL_TYPE": [{
-                "value": 0
+                "value": 1
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_2_WHEEL_ID": [{
                 "value": 0
@@ -953,16 +966,16 @@
                 "value": 0
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_3_MODEL_HASH": [{
-                "value": 359875117
+                "value": 1748565021
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_3_COLOUR_1": [{
-                "value": 111
+                "value": 89
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_3_COLOUR_2": [{
-                "value": 10
+                "value": 89
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_3_EXTRA_COLOUR_1": [{
-                "value": 0
+                "value": 88
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_3_EXTRA_COLOUR_2": [{
                 "value": 0
@@ -974,10 +987,10 @@
                 "value": 132
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_3_LIVERY": [{
-                "value": 11
+                "value": 6
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_3_WHEEL_TYPE": [{
-                "value": 3
+                "value": 7
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_3_WHEEL_ID": [{
                 "value": 0
@@ -988,17 +1001,53 @@
             "SIMEON_TEST_DRIVE_VEHICLE_3_XENON_LIGHTS": [{
                 "value": 0
             }],
-            "SIMEON_TEST_DRIVE_VEHICLE_5_MODEL_HASH": [{
-                "value": 1456744817
+            "SIMEON_TEST_DRIVE_VEHICLE_4_MODEL_HASH": [{
+                "value": 1862507111
             }],
-            "SIMEON_TEST_DRIVE_VEHICLE_5_COLOUR_1": [{
-                "value": 138
+            "SIMEON_TEST_DRIVE_VEHICLE_4_COLOUR_1": [{
+                "value": 29
             }],
-            "SIMEON_TEST_DRIVE_VEHICLE_5_COLOUR_2": [{
+            "SIMEON_TEST_DRIVE_VEHICLE_4_COLOUR_2": [{
                 "value": 4
             }],
+            "SIMEON_TEST_DRIVE_VEHICLE_4_EXTRA_COLOUR_1": [{
+                "value": 28
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_4_EXTRA_COLOUR_2": [{
+                "value": 0
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_4_COLOUR_5": [{
+                "value": 1
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_4_COLOUR_6": [{
+                "value": 132
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_4_LIVERY": [{
+                "value": 0
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_4_WHEEL_TYPE": [{
+                "value": 0
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_4_WHEEL_ID": [{
+                "value": 0
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_4_WINDOW_TINT_COLOUR": [{
+                "value": 0
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_4_XENON_LIGHTS": [{
+                "value": 0
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_5_MODEL_HASH": [{
+                "value": -1804415708
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_5_COLOUR_1": [{
+                "value": 111
+            }],
+            "SIMEON_TEST_DRIVE_VEHICLE_5_COLOUR_2": [{
+                "value": 28
+            }],
             "SIMEON_TEST_DRIVE_VEHICLE_5_EXTRA_COLOUR_1": [{
-                "value": 89
+                "value": 0
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_5_EXTRA_COLOUR_2": [{
                 "value": 0
@@ -1022,42 +1071,6 @@
                 "value": 0
             }],
             "SIMEON_TEST_DRIVE_VEHICLE_5_XENON_LIGHTS": [{
-                "value": 0
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_MODEL_HASH": [{
-                "value": 1026149675
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_COLOUR_1": [{
-                "value": 96
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_COLOUR_2": [{
-                "value": 98
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_EXTRA_COLOUR_1": [{
-                "value": 95
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_EXTRA_COLOUR_2": [{
-                "value": 112
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_COLOUR_5": [{
-                "value": 1
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_COLOUR_6": [{
-                "value": 132
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_LIVERY": [{
-                "value": 2
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_WHEEL_TYPE": [{
-                "value": 1
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_WHEEL_ID": [{
-                "value": 0
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_WINDOW_TINT_COLOUR": [{
-                "value": 0
-            }],
-            "SIMEON_TEST_DRIVE_VEHICLE_4_XENON_LIGHTS": [{
                 "value": 0
             }],
             "NPCFLOWINVITEPLAYLISTACTIVE": [{
@@ -1502,127 +1515,127 @@
                 "value": 20
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_0_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_1_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_2_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_3_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_4_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_5_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_6_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_7_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_8_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_9_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_10_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_11_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_12_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_13_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_14_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_15_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_16_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_17_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_18_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_19_PROFESSIONAL_0": [{
-                "value": -2114820726
+                "value": -1249911673
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_0_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_1_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_2_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_3_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_4_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_5_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_6_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_7_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_8_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_9_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_10_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_11_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_12_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_14_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_15_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_16_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_17_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_18_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "FM_CORONA_PLAYLIST_VEH_CLASS_BS_ID_19_PROFESSIONAL": [{
-                "value": 4
+                "value": 7
             }],
             "TIMETRIALVARIATION": [{
-                "value": 20
+                "value": 21
             }],
             "RCTIMETRIALVARIATION": [{
-                "value": 0
+                "value": 1
             }],
             "VEHICLEWEBSITE_SALE": [{
                 "value": true
@@ -1664,7 +1677,7 @@
                 "value": 1667260800
             }],
             "LAUNCHPOSIX_BROADWAY": [{
-                "value": 1703462400
+                "value": 1667260800
             }],
             "LAUNCHPOSIX_PANTHERE": [{
                 "value": 1703462400
@@ -1712,7 +1725,7 @@
                 "value": false
             }],
             "ENABLE_VEHICLE_BROADWAY": [{
-                "value": false
+                "value": true
             }],
             "ENABLE_VEHICLE_PANTHERE": [{
                 "value": false
@@ -1748,7 +1761,7 @@
                 "value": true
             }],
             "ENABLE_RACE_CREATOR_BROADWAY": [{
-                "value": false
+                "value": true
             }],
             "ENABLE_RACE_CREATOR_PANTHERE": [{
                 "value": false
@@ -1784,7 +1797,7 @@
                 "value": true
             }],
             "ENABLE_BROADWAY_CREATORS": [{
-                "value": false
+                "value": true
             }],
             "ENABLE_PANTHERE_CREATORS": [{
                 "value": false
@@ -1820,7 +1833,7 @@
                 "value": true
             }],
             "ENABLE_TRANSFORM_BROADWAY": [{
-                "value": false
+                "value": true
             }],
             "ENABLE_TRANSFORM_PANTHERE": [{
                 "value": false
@@ -1864,62 +1877,440 @@
             "XM22_TAXI_DRIVER_ENABLE": [{
                 "value": true
             }],
+            "HELPTEXT_VEHICLE_BROADWAY_WEBSITE": [{
+                "value": true
+            }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_0_PROFESSIONAL_1": [{
-                "value": -1942644975
+                "value": 2016087014
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_1_PROFESSIONAL_1": [{
-                "value": -1299563301
+                "value": -2062841534
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_2_PROFESSIONAL_1": [{
-                "value": 17136406
+                "value": 1519050824
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_3_PROFESSIONAL_1": [{
-                "value": 1076493561
+                "value": -187192104
             }],
             "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_4_PROFESSIONAL_1": [{
-                "value": -578770888
+                "value": 1743038015
+            }],
+            "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_5_PROFESSIONAL_1": [{
+                "value": 1629270835
+            }],
+            "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_6_PROFESSIONAL_1": [{
+                "value": 1047250590
+            }],
+            "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_7_PROFESSIONAL_1": [{
+                "value": 594303623
+            }],
+            "FM_CORONA_PLAYLIST_ROOT_CONTENT_ID_8_PROFESSIONAL_1": [{
+                "value": 964856427
             }],
             "FM_CORONA_PLAYLIST_LENGTH_PROFESSIONAL_1": [{
-                "value": 5
+                "value": 9
             }],
-            "BIKER_ACID_PRODUCT_VALUE": [{
-                "value": 2227
+            "EVENT_LOGIN_DLC22022_VALENTINES_BLAZER": [{
+                "value": true
             }],
-            "BIKER_ACID_PRODUCT_VALUE_EQUIPMENT_UPGRADE": [{
-                "value": 915
+            "EVENT_LOGIN_DLC22022_NECKLACE_HEARTBREAK": [{
+                "value": true
             }],
-            "XM22_BIN_PRICE_BRICKADE2": [{
-                "value": 1015000
+            "FIXER_PAYPHONE_HIT_BONUS_KILL_METHOD_CASH_REWARD": [{
+                "value": 105000
             }],
-            "WEBSITE_VAPID_YOUGA_CLASSIC": [{
-                "value": 97500
+            "FIXER_PAYPHONE_HIT_STANDARD_GOON_KILL_METHOD_CASH_REWARD": [{
+                "value": 22500
             }],
-            "STUNT_LAMPADATI_TROPOS_RALLYE": [{
-                "value": 571200
+            "FIXER_PAYPHONE_HIT_GOON_BONUS_KILL_METHOD_CASH_REWARD": [{
+                "value": 45000
             }],
-            "AW_SALE_PRICE_TULIP": [{
-                "value": 502600
+            "FIXER_PAYPHONE_HIT_STANDARD_KILL_METHOD_CASH_REWARD": [{
+                "value": 22500
             }],
-            "DAILY_OBJECTIVE_TUE_1": [{
-                "value": 79
+            "FIXER_PAYPHONE_HIT_RP_REWARD": [{
+                "value": 1500
             }],
-            "DAILY_OBJECTIVE_WED_1": [{
-                "value": 64
-            }],
-            "DAILY_OBJECTIVE_THU_1": [{
+            "VALENTINE_MODIFIER_CADDY_GUSENBERG": [{
                 "value": 0
             }],
+            "IINDIVIDUAL_WEAPON_SALE_HASH_LABELS_0": [{
+                "value": -2003575334
+            }],
+            "MALEUPPERS_VALENTINES2016_BLUE_CHECK_DOUBLE_SUIT": [{
+                "value": 3090
+            }],
+            "MALEUPPERS_VALENTINES2016_RED_PINSTRIPE_DOUBLE_SUIT": [{
+                "value": 3400
+            }],
+            "MALEUPPERS_VALENTINES2016_DUSK_CHECK_DOUBLE_SUIT": [{
+                "value": 3275
+            }],
+            "MALEUPPERS_VALENTINES2016_PURPLE_CHECK_DOUBLE_SUIT": [{
+                "value": 2787
+            }],
+            "MALEUPPERS_VALENTINES2016_GRAY_CHECK_DOUBLE_SUIT": [{
+                "value": 3115
+            }],
+            "MALEUPPERS_VALENTINES2016_SKY_CHECK_DOUBLE_SUIT": [{
+                "value": 2942
+            }],
+            "MALEUPPERS_VALENTINES2016_CHOCOLATE_CHECK_DOUBLE_SUIT": [{
+                "value": 3170
+            }],
+            "MALEUPPERS_VALENTINES2016_MUSTARD_PINSTRIPE_DOUBLE_SUIT": [{
+                "value": 3580
+            }],
+            "MALEUPPERS_VALENTINES2016_CRIMSON_CHECK_DOUBLE_SUIT": [{
+                "value": 2975
+            }],
+            "MALEUPPERS_VALENTINES2016_CLASSIC_CHECK_DOUBLE_SUIT": [{
+                "value": 3107
+            }],
+            "MALEUPPERS_VALENTINES2016_BEIGE_CHECK_DOUBLE_SUIT": [{
+                "value": 3525
+            }],
+            "MALEUPPERS_VALENTINES2016_ROYAL_CHECK_DOUBLE_SUIT": [{
+                "value": 2960
+            }],
+            "FEMALEUPPERS_VALENTINES2016_BLUE_EMBROIDERED_DRESS": [{
+                "value": 4107
+            }],
+            "FEMALEUPPERS_VALENTINES2016_GOLD_EMBROIDERED_DRESS": [{
+                "value": 4200
+            }],
+            "FEMALEUPPERS_VALENTINES2016_CREAM_EMBROIDERED_DRESS": [{
+                "value": 4182
+            }],
+            "FEMALEUPPERS_VALENTINES2016_BROWN_SHIMMER_DRESS": [{
+                "value": 4385
+            }],
+            "FEMALEUPPERS_VALENTINES2016_GOLD_SHIMMER_DRESS": [{
+                "value": 4497
+            }],
+            "FEMALEUPPERS_VALENTINES2016_BLUE_SHIMMER_DRESS": [{
+                "value": 4470
+            }],
+            "FEMALEUPPERS_VALENTINES2016_RED_VINATGE_DRESS": [{
+                "value": 4592
+            }],
+            "FEMALEUPPERS_VALENTINES2016_GREEN_VINATGE_DRESS": [{
+                "value": 4492
+            }],
+            "FEMALEUPPERS_VALENTINES2016_CREAM_VINATGE_DRESS": [{
+                "value": 4600
+            }],
+            "FEMALEUPPERS_VALENTINES2016_WHITE_COLUMN_DRESS": [{
+                "value": 4682
+            }],
+            "FEMALEUPPERS_VALENTINES2016_BLUE_COLUMN_DRESS": [{
+                "value": 4762
+            }],
+            "FEMALEUPPERS_VALENTINES2016_WHITE_BEADED_DRESS": [{
+                "value": 4907
+            }],
+            "FEMALEUPPERS_VALENTINES2016_BLACK_BEADED_DRESS": [{
+                "value": 4982
+            }],
+            "FEMALEUPPERS_VALENTINES2016_RED_BEADED_DRESS": [{
+                "value": 5000
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_0": [{
+                "value": 431179672
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_1": [{
+                "value": 1993507289
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_2": [{
+                "value": -1957451045
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_3": [{
+                "value": 867569784
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_4": [{
+                "value": 1164817383
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_5": [{
+                "value": 1461409602
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_7": [{
+                "value": -1422812079
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_8": [{
+                "value": -1114390251
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_9": [{
+                "value": -1745575025
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_10": [{
+                "value": 1818578029
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_11": [{
+                "value": -799599537
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_12": [{
+                "value": -1715470080
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_13": [{
+                "value": -909975291
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_14": [{
+                "value": -964896135
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_15": [{
+                "value": -1115463994
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_16": [{
+                "value": -406211758
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_17": [{
+                "value": -1394066088
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_18": [{
+                "value": -1767501612
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_19": [{
+                "value": -1015911828
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_20": [{
+                "value": -1246441743
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_21": [{
+                "value": 801948443
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_22": [{
+                "value": 1648273406
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_23": [{
+                "value": -1971521414
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_24": [{
+                "value": 2092129511
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_25": [{
+                "value": -173566131
+            }],
+            "INDIVIDUAL_CLOTHING_SALE_HASH_LABELS_26": [{
+                "value": 593851080
+            }],
+            "CH_ARCADE_DAVIS_SALE_PRICE": [{
+                "value": 1387750
+            }],
+            "CH_ARCADE_GRAPESEED_SALE_PRICE": [{
+                "value": 1017250
+            }],
+            "CH_ARCADE_LAMESA_SALE_PRICE": [{
+                "value": 1218750
+            }],
+            "CH_ARCADE_PALETOBAY_SALE_PRICE": [{
+                "value": 802750
+            }],
+            "CH_ARCADE_ROCKFORDHILLS_SALE_PRICE": [{
+                "value": 1524250
+            }],
+            "CH_ARCADE_WESTVINEWOOD_SALE_PRICE": [{
+                "value": 1644500
+            }],
+            "CH_ARCADE_STYLE_MIRRORED_SALE_PRICE": [{
+                "value": 188500
+            }],
+            "CH_ARCADE_STYLE_HIPSTER_SALE_PRICE": [{
+                "value": 305500
+            }],
+            "CH_ARCADE_NEON_8_SALE_PRICE": [{
+                "value": 208000
+            }],
+            "CH_ARCADE_NEON_7_SALE_PRICE": [{
+                "value": 182000
+            }],
+            "CH_ARCADE_NEON_6_SALE_PRICE": [{
+                "value": 156325
+            }],
+            "CH_ARCADE_NEON_5_SALE_PRICE": [{
+                "value": 130650
+            }],
+            "CH_ARCADE_NEON_4_SALE_PRICE": [{
+                "value": 111150
+            }],
+            "CH_ARCADE_NEON_3_SALE_PRICE": [{
+                "value": 96850
+            }],
+            "CH_ARCADE_NEON_2_SALE_PRICE": [{
+                "value": 83200
+            }],
+            "CH_ARCADE_NEON_1_SALE_PRICE": [{
+                "value": 69875
+            }],
+            "CH_ARCADE_MURAL_8_SALE_PRICE": [{
+                "value": 69875
+            }],
+            "CH_ARCADE_MURAL_7_SALE_PRICE": [{
+                "value": 62400
+            }],
+            "CH_ARCADE_MURAL_6_SALE_PRICE": [{
+                "value": 55900
+            }],
+            "CH_ARCADE_MURAL_5_SALE_PRICE": [{
+                "value": 49400
+            }],
+            "CH_ARCADE_MURAL_4_SALE_PRICE": [{
+                "value": 44200
+            }],
+            "CH_ARCADE_MURAL_3_SALE_PRICE": [{
+                "value": 39975
+            }],
+            "CH_ARCADE_MURAL_2_SALE_PRICE": [{
+                "value": 36400
+            }],
+            "CH_ARCADE_MURAL_1_SALE_PRICE": [{
+                "value": 32825
+            }],
+            "CH_ARCADE_FLOOR_8_SALE_PRICE": [{
+                "value": 107250
+            }],
+            "CH_ARCADE_FLOOR_7_SALE_PRICE": [{
+                "value": 96200
+            }],
+            "CH_ARCADE_FLOOR_6_SALE_PRICE": [{
+                "value": 85800
+            }],
+            "CH_ARCADE_FLOOR_5_SALE_PRICE": [{
+                "value": 76050
+            }],
+            "CH_ARCADE_FLOOR_4_SALE_PRICE": [{
+                "value": 67925
+            }],
+            "CH_ARCADE_FLOOR_3_SALE_PRICE": [{
+                "value": 61425
+            }],
+            "CH_ARCADE_FLOOR_2_SALE_PRICE": [{
+                "value": 55900
+            }],
+            "CH_ARCADE_FLOOR_1_SALE_PRICE": [{
+                "value": 50700
+            }],
+            "CH_ARCADE_QUARTERS_SALE_PRICE": [{
+                "value": 97500
+            }],
+            "CH_ARCADE_HIGHSCORE_SALE_PRICE": [{
+                "value": 191750
+            }],
+            "CH_ARCADE_GARAGE_SALE_PRICE": [{
+                "value": 139750
+            }],
+            "CH_ARCADE_UPGRADE_CONTROL_SALE_PRICE": [{
+                "value": 1131000
+            }],
+            "CH_ARCADE_UPGRADE_DRONE_SALE_PRICE": [{
+                "value": 949000
+            }],
+            "CH_ARCADE_MURAL_NONE_RENOVATION_SALE_PRICE": [{
+                "value": 16250
+            }],
+            "CH_ARCADE_FLOOR_NONE_RENOVATION_SALE_PRICE": [{
+                "value": 32500
+            }],
+            "CH_ARCADE_NEON_NONE_RENOVATION_SALE_PRICE": [{
+                "value": 32500
+            }],
+            "CH_ARCADE_STYLE_RETRO_RENOVATION_SALE_PRICE": [{
+                "value": 113750
+            }],
+            "CH_CABINET_INVADE_SALE_PRICE": [{
+                "value": 122500
+            }],
+            "CH_CABINET_SPACEMONKEY_SALE_PRICE": [{
+                "value": 180000
+            }],
+            "CH_CABINET_BADLANDS_SALE_PRICE": [{
+                "value": 181250
+            }],
+            "CH_CABINET_RACSTREET_SALE_PRICE": [{
+                "value": 205000
+            }],
+            "CH_CABINET_RACTRUCKIN_SALE_PRICE": [{
+                "value": 184750
+            }],
+            "CH_CABINET_WIZARD_SALE_PRICE": [{
+                "value": 210000
+            }],
+            "CH_CABINET_DEFENDER_SALE_PRICE": [{
+                "value": 76250
+            }],
+            "CH_CABINET_PARADISE_SALE_PRICE": [{
+                "value": 45000
+            }],
+            "CH_CABINET_PENETRATOR_SALE_PRICE": [{
+                "value": 50750
+            }],
+            "CH_CABINET_WASABI_SALE_PRICE": [{
+                "value": 147500
+            }],
+            "CH_CABINET_MADAME_SALE_PRICE": [{
+                "value": 157500
+            }],
+            "CH_CABINET_LOVE_SALE_PRICE": [{
+                "value": 130750
+            }],
+            "SUM_CABINET_STRENGTH_TEST_SALE_PRICE": [{
+                "value": 333000
+            }],
+            "SUM_CABINET_QUB3D_SALE_PRICE": [{
+                "value": 166500
+            }],
+            "CH_CABINET_CAMHEDZ_SALE_PRICE": [{
+                "value": 181250
+            }],
+            "WEBSITE_VALENTINES2016_ALBANY_ROOSEVELT_VALOR": [{
+                "value": 638300
+            }],
+            "VC_SALE_PRICE_GASSER": [{
+                "value": 523250
+            }],
+            "XM22_BIN_PRICE_ENTITY3": [{
+                "value": 1766250
+            }],
+            "TURN_ON_VALENTINES_EVENT": [{
+                "value": true
+            }],
+            "TURN_ON_VALENTINE_VEHICLE": [{
+                "value": true
+            }],
+            "TURN_ON_VALENTINE_MASKS": [{
+                "value": true
+            }],
+            "TURN_ON_VALENTINE_HAIR": [{
+                "value": true
+            }],
+            "TURN_ON_VALENTINE_CLOTHING": [{
+                "value": true
+            }],
+            "TURN_ON_VALENTINE_2016_CLOTHING": [{
+                "value": true
+            }],
+            "TURN_ON_VALENTINE_2016_VEHICLE": [{
+                "value": true
+            }],
+            "DAILY_OBJECTIVE_TUE_1": [{
+                "value": 7
+            }],
+            "DAILY_OBJECTIVE_WED_1": [{
+                "value": 89
+            }],
+            "DAILY_OBJECTIVE_THU_1": [{
+                "value": 176
+            }],
             "DAILY_OBJECTIVE_FRI_1": [{
-                "value": 76
+                "value": 177
             }],
             "DAILY_OBJECTIVE_SAT_1": [{
-                "value": 38
-            }],
-            "DAILY_OBJECTIVE_SUN_1": [{
                 "value": 182
             }],
-            "DAILY_OBJECTIVE_MON_1": [{
+            "DAILY_OBJECTIVE_SUN_1": [{
                 "value": 52
+            }],
+            "DAILY_OBJECTIVE_MON_1": [{
+                "value": 2
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_TYPE_0": [{
                 "value": -1716189206
@@ -1928,25 +2319,25 @@
                 "value": -1786099057
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_TYPE_2": [{
-                "value": -2067956739
+                "value": -598887786
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_TYPE_3": [{
-                "value": 137902532
+                "value": 2017895192
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_TYPE_4": [{
-                "value": -1660422300
+                "value": 1627465347
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_TYPE_5": [{
-                "value": 1853742572
+                "value": 125959754
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_TYPE_6": [{
                 "value": -22923932
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_TYPE_7": [{
-                "value": -1568386805
+                "value": -1238556825
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_TYPE_8": [{
-                "value": -1355376991
+                "value": 0
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_TYPE_9": [{
                 "value": 0
@@ -1955,13 +2346,13 @@
                 "value": 615608432
             }],
             "XM22_GUN_VAN_SLOT_THROWABLE_TYPE_1": [{
-                "value": -1420407917
+                "value": 741814745
             }],
             "XM22_GUN_VAN_SLOT_THROWABLE_TYPE_2": [{
-                "value": -1813897027
+                "value": -1169823560
             }],
             "XM22_GUN_VAN_STOCK_ID": [{
-                "value": 4
+                "value": 5
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_DISCOUNT_0": [{
                 "value": 0.1
@@ -1979,7 +2370,7 @@
                 "value": 0.1
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_DISCOUNT_5": [{
-                "value": 0.5
+                "value": 0.3
             }],
             "XM22_GUN_VAN_SLOT_WEAPON_DISCOUNT_6": [{
                 "value": 0.1
@@ -2016,6 +2407,9 @@
             }],
             "XM22_GUN_VAN_SLOT_ARMOUR_DISCOUNT_4": [{
                 "value": 0.2
+            }],
+            "VALENTINE_GUSENBERG_AMMO": [{
+                "value": 82
             }]
         },
         "MP_Global": {
@@ -2033,35 +2427,40 @@
             }]
         },
         "CD_GLOBAL": {
-            "NET_TEXT_CHAT_ALLOW_RECEIVE_FROM_GROUP_SAMESESSION": [{
+            "NET_CHAT_FILTER_ENABLED": [{
                 "value": true
-            }],
-            "EVENT_WKLY": [{
-                "value": 335
             }],
             "METRIC_MAX_FPS_SAMPLES": [{
                 "value": 54000
             }],
-            "YOUTUBE_ENABLED": [{
-                "value": true
+            "TUNABLE_VERSION": [{
+                "value": 1100
             }],
-            "YOUTUBE_PUBLIC": [{
-                "value": true
-            }],
-            "YOUTUBE_ALBUM_AD": [{
-                "value": true
+            "YOUTUBE_ALBUM_AD_TRACKID": [{
+                "value": 0
             }],
             "DETACH_SCENARIO_PEDS_AGGRESSIVE": [{
                 "value": true
             }],
-            "ALLOW_BAIL_FOR_LAUNCHED_JOINS": [{
+            "CXN_PACK_RESEND_QUEUE_FIRST": [{
+                "value": true
+            }],
+            "PEER_COMPLAINER_ALLOW_ESTABLISHING_COMPLAINTS": [{
                 "value": false
             }],
-            "SESSION_TIME_DIRECT_JOIN": [{
-                "value": 80000
+            "PEER_COMPLAINER_PREFER_TO_BOOT_ESTABLISHING_CANDIDATES": [{
+                "value": false
             }]
         },
         "CONTENT_MODIFIER_0": {
+            "CASH_MULTIPLIER": [{
+                "value": 3
+            }],
+            "JOB_RP_CAP": [{
+                "value": 60000
+            }]
+        },
+        "CONTENT_MODIFIER_1": {
             "CASH_MULTIPLIER": [{
                 "value": 2
             }],
