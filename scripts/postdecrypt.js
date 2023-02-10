@@ -70,8 +70,7 @@ function lookupTunable(key, value, missingName = false) {
         if (missingName) {
             const isHashInTuneablesProcessing = tuneablesProcessing.includes(hashSigned) || tuneablesProcessing.includes(hashUnsigned);
             if (isHashInTuneablesProcessing) {
-                const hash = tuneablesProcessing.includes(hashSigned) ? hashSigned : hashUnsigned;
-                tunablesDataDecryptedStringified = stringify(tunablesDataDecryptedStringified, contextKey, hash, value);
+                tunablesDataDecryptedStringified = stringify(tunablesDataDecryptedStringified, contextKey, hashSigned, value);
                 totalDecryptedTunables++;
                 return true;;
             }
