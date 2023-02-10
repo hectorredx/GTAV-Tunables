@@ -1880,6 +1880,18 @@
             "EVENT_LOGIN_DLC22022_NECKLACE_HEARTBREAK": [{
                 "value": true
             }],
+            "CH_VAULT_WEIGHTING_CASH": [{
+                "value": 0.2
+            }],
+            "CH_VAULT_WEIGHTING_ART": [{
+                "value": 0.2
+            }],
+            "CH_VAULT_WEIGHTING_GOLD": [{
+                "value": 0.2
+            }],
+            "CH_VAULT_WEIGHTING_DIAMONDS": [{
+                "value": 0.4
+            }],
             "FIXER_PAYPHONE_HIT_BONUS_KILL_METHOD_CASH_REWARD": [{
                 "value": 105000
             }],
@@ -2393,9 +2405,6 @@
             "231221373": [{
                 "value": true
             }],
-            "3102381136": [{
-                "value": 0.2
-            }],
             "4096276538": [{
                 "value": true
             }],
@@ -2457,9 +2466,6 @@
             }],
             "1219016801": [{
                 "value": true
-            }],
-            "-943921109": [{
-                "value": 0.2
             }],
             "2790937933": [{
                 "value": 375
@@ -2541,9 +2547,6 @@
             "2874070855": [{
                 "value": false
             }],
-            "2834194024": [{
-                "value": 0.4
-            }],
             "1712332342": [{
                 "value": 600
             }],
@@ -2614,11 +2617,6 @@
             }],
             "734638691": [{
                 "value": 2
-            }]
-        },
-        "MP_CNC_TEAM_LOST": {
-            "-302540167": [{
-                "value": 0.2
             }]
         }
     }
