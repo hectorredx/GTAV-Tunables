@@ -5,45 +5,62 @@ const CONFIG = require('../config');
 
 
 const dictionaryFileRawData = fs.readFileSync(`output/${CONFIG.FILE_NAMES.DICTIONARY}`);
-const tunablesFileRawData = fs.readFileSync(`output/${CONFIG.FILE_NAMES.ENCRYPTED}`);
 const tuneablesProcessing = fs.readFileSync(`output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`);
 
 const dictionary = JSON.parse(dictionaryFileRawData);
-const tunablesData = JSON.parse(tunablesFileRawData);
-const tunablesDataDecrypted = { ...tunablesData, tunables: {} };
-let tunablesDataDecryptedStringified = JSON.stringify(tunablesDataDecrypted).slice(0, -2);
-let tunablesWithoutNames = {};
-let totalDecryptedTunables = 0;
-
-const TUNABLE_CONTEXT = {};
-CONFIG.TUNABLE_CONTEXTS.forEach(context => TUNABLE_CONTEXT[context] = joaat(context));
-tunablesData.contentlists[0].forEach((_, i) => {
-    const { TUNABLE_CONTENT_CONTEXTS } = CONFIG;
-    TUNABLE_CONTEXT[TUNABLE_CONTENT_CONTEXTS[0].concat('_', i)] = joaat(TUNABLE_CONTENT_CONTEXTS[0].concat('_', i))
-    TUNABLE_CONTEXT[TUNABLE_CONTENT_CONTEXTS[1].concat('_', i)] = joaat(TUNABLE_CONTENT_CONTEXTS[1].concat('_', i))
-});
+let tunablesDataDecryptedStringified;
+let totalDecryptedTunables;
+let TUNABLE_CONTEXT = {};
 
 console.log('Decrypting ...');
-for (const [key, value] of Object.entries(tunablesData.tunables)) {
-    const hasName = lookupTunable(key, value);
-    if (!hasName && !Object.keys(tunablesWithoutNames).includes(key)) tunablesWithoutNames[key] = value;
-};
 
-for (const [key, value] of Object.entries(tunablesWithoutNames)) {
-    lookupTunable(key, value, true);
-}
+CONFIG.PLATFORMS.forEach((platform, index) => {
+    const encryptedPath = `output/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform);
+    const decryptedPath = `output/${CONFIG.FILE_NAMES.DECRYPTED}`.replace(new RegExp('{platform}', 'g'), platform);
 
-fs.writeFile(`output/${CONFIG.FILE_NAMES.DECRYPTED}`, beautify(tunablesDataDecryptedStringified.concat('}}')), null, () => {
-    if (CONFIG.DEBUG) {
-        console.log('\nTotal Encrypted Tunables = ', Object.keys(tunablesData.tunables).length);
-        console.log('Total Decrypted Tunables = ', totalDecryptedTunables);
+    if (['ps3', 'xbox360'].includes(platform)) {
+        fs.renameSync(encryptedPath, decryptedPath);
     } else {
-        fs.unlinkSync(`output/${CONFIG.FILE_NAMES.ENCRYPTED}`);
-        fs.unlinkSync(`output/${CONFIG.FILE_NAMES.DICTIONARY}`);
-        fs.unlinkSync(`output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`);
+        const tunablesFileRawData = fs.readFileSync(encryptedPath);
+        const tunablesData = JSON.parse(tunablesFileRawData);
+        const tunablesDataDecrypted = { ...tunablesData, tunables: {} };
+        tunablesDataDecryptedStringified = JSON.stringify(tunablesDataDecrypted).slice(0, -2);
+        totalDecryptedTunables = 0;
+        let tunablesWithoutNames = {};
+        TUNABLE_CONTEXT = {};
+        CONFIG.TUNABLE_CONTEXTS.forEach(context => TUNABLE_CONTEXT[context] = joaat(context));
+        tunablesData.contentlists[0].forEach((_, i) => {
+            const { TUNABLE_CONTENT_CONTEXTS } = CONFIG;
+            TUNABLE_CONTEXT[TUNABLE_CONTENT_CONTEXTS[0].concat('_', i)] = joaat(TUNABLE_CONTENT_CONTEXTS[0].concat('_', i))
+            TUNABLE_CONTEXT[TUNABLE_CONTENT_CONTEXTS[1].concat('_', i)] = joaat(TUNABLE_CONTENT_CONTEXTS[1].concat('_', i))
+        });
+
+        for (const [key, value] of Object.entries(tunablesData.tunables)) {
+            const hasName = lookupTunable(key, value);
+            if (!hasName && !Object.keys(tunablesWithoutNames).includes(key)) tunablesWithoutNames[key] = value;
+        };
+
+        for (const [key, value] of Object.entries(tunablesWithoutNames)) {
+            lookupTunable(key, value, true);
+        }
+
+        fs.writeFileSync(decryptedPath, beautify(tunablesDataDecryptedStringified.concat('}}')));
+        console.log(`\n${platform.toUpperCase()} Tunables Decrypted`)
+        if (CONFIG.DEBUG) {
+            console.log('\nTotal Encrypted Tunables = ', Object.keys(tunablesData.tunables).length);
+            console.log('Total Decrypted Tunables = ', totalDecryptedTunables);
+        } else {
+            fs.unlinkSync(encryptedPath);
+            if (index === CONFIG.PLATFORMS.length - 1) {
+                fs.unlinkSync(`output/${CONFIG.FILE_NAMES.DICTIONARY}`);
+                fs.unlinkSync(`output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`);
+            }
+        }
     }
-    console.log('\nDone!');
 });
+
+if (!CONFIG.DEBUG) updateReadMe();
+console.log('\nDone!');
 
 function lookupTunable(key, value, missingName = false) {
     for (const [contextKey, contextValue] of Object.entries(TUNABLE_CONTEXT)) {
@@ -78,6 +95,16 @@ function stringify(mainString, context, key, value) {
     } else {
         return mainString.concat(mainString.endsWith('{') ? '' : ',', `"${context}":{"${key}": [{"value":${valueString}}]}`);
     }
+}
+
+function updateReadMe() {
+    const readMePath = './README.md';
+    const readMeFile = fs.readFileSync(readMePath);
+    const date = new Date();
+    const dateFormatted = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).format(date);
+    const dateLine = readMeFile.toString().split(/\r?\n/).find(line => line.includes(date.getFullYear()));
+    const dateLineUpdated = dateLine.substring(0, dateLine.indexOf(date.getFullYear()) - 8).concat(dateFormatted);
+    fs.writeFileSync(readMePath, readMeFile.toString().replace(dateLine, dateLineUpdated));
 }
 
 function findKey(obj, predicate = o => o) {

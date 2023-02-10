@@ -8,8 +8,8 @@ module.exports = {
         TUNEABLES_PROCESSING: 'https://raw.githubusercontent.com/root-cause/v-decompiled-scripts/master/tuneables_processing.c',
     },
     FILE_NAMES: {
-        ENCRYPTED: 'tunables-encrypted.json',
-        DECRYPTED: 'tunables.json',
+        ENCRYPTED: 'tunables-{platform}-encrypted.json',
+        DECRYPTED: 'tunables-{platform}.json',
         DICTIONARY: 'dictionary.json',
         TUNEABLES_PROCESSING: 'tuneables_processing.c',
     },
