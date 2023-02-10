@@ -7,6 +7,8 @@
 - [XBOX 360](output/tunables-xbox360.json)
 - [PS3](output/tunables-ps3.json)
 
+---
+
 ### Getting Started (DIY)
 ```
 # 1. clone the repo
@@ -20,3 +22,10 @@ npm start
 
 # 4. Checkout the decrypted tunables files in the output directory
 ```
+
+---
+
+### Special Thanks
+- [Apokalypt](https://github.com/Apokalypt) for the decryption instructions
+- [Wildbrick142](https://github.com/Wildbrick142) for [the tunables names list](https://github.com/Wildbrick142/V-Tunable-Names)
+- [root-cause](https://github.com/root-cause) for [the decompiled scripts](https://github.com/root-cause/v-decompiled-scripts)
