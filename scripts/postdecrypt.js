@@ -1,11 +1,12 @@
 const fs = require('fs');
+const upath = require('upath');
 const { js_beautify: beautify } = require('js-beautify');
 const joaat = require('../lib/joaat');
 const CONFIG = require('../config');
 
 
-const dictionaryFileRawData = fs.readFileSync(`output/${CONFIG.FILE_NAMES.DICTIONARY}`);
-const tuneablesProcessing = fs.readFileSync(`output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`);
+const dictionaryFileRawData = fs.readFileSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`));
+const tuneablesProcessing = fs.readFileSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
 
 const dictionary = JSON.parse(dictionaryFileRawData);
 let tunablesDataDecryptedStringified;
@@ -15,8 +16,8 @@ let TUNABLE_CONTEXT = {};
 console.log('Decrypting ...');
 
 CONFIG.PLATFORMS.forEach((platform, index) => {
-    const encryptedPath = `output/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform);
-    const decryptedPath = `output/${CONFIG.FILE_NAMES.DECRYPTED}`.replace(new RegExp('{platform}', 'g'), platform);
+    const encryptedPath = upath.normalize(`./output/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
+    const decryptedPath = upath.normalize(`./output/${CONFIG.FILE_NAMES.DECRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
 
     if (['ps3', 'xbox360'].includes(platform)) {
         fs.renameSync(encryptedPath, decryptedPath);
@@ -52,8 +53,8 @@ CONFIG.PLATFORMS.forEach((platform, index) => {
         } else {
             fs.unlinkSync(encryptedPath);
             if (index === CONFIG.PLATFORMS.length - 1) {
-                fs.unlinkSync(`output/${CONFIG.FILE_NAMES.DICTIONARY}`);
-                fs.unlinkSync(`output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`);
+                fs.unlinkSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`));
+                fs.unlinkSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
             }
         }
     }

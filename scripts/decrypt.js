@@ -1,4 +1,5 @@
 const fs = require('fs');
+const upath = require('upath');
 const http = require('http-wrapper');
 const { js_beautify: beautify } = require('js-beautify');
 const aesjs = require('aes-js');
@@ -15,7 +16,7 @@ function decryptTunablesToHex(encrypted) {
 
 CONFIG.PLATFORMS.forEach(platform => {
     const url = CONFIG.URLS.TUNABLES.replace(new RegExp('{platform}', 'g'), platform);
-    const path = `output/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform);
+    const path = upath.normalize(`./output/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
     return http.get(url).then(res => {
         fs.writeFile(path, beautify(decryptTunablesToHex(res.content)), null, () => { if (CONFIG.DEBUG) console.log(`${platform.toUpperCase()} Encrypted Tunables downloaded`); });
     })
