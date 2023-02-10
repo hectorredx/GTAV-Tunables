@@ -20,9 +20,6 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm start
-  commit-push:
-    needs: build
-    runs-on: ubuntu-latest
     - uses: mikeal/publish-to-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
