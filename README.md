@@ -18,5 +18,5 @@ npm install
 # 3. start the script
 npm start
 
-# 4. Checkout the decrypted tunables file "tunables.json" in the output directory
+# 4. Checkout the decrypted tunables files in the output directory
 ```
