@@ -1,7 +1,13 @@
-### Output files of 09 February 2023
-[Decrypted Tunables](output/tunables.json)
+### Decrypted Tunables of Feb 09, 2023
+- [PC](output/tunables-pcros.json)
+- [XBOX SX](output/tunables-xboxsx.json)
+- [PS5](output/tunables-ps5.json)
+- [XBOX ONE](output/tunables-xboxone.json)
+- [PS4](output/tunables-ps4.json)
+- [XBOX 360](output/tunables-xbox360.json)
+- [PS3](output/tunables-ps3.json)
 
-### Getting Started
+### Getting Started (DIY)
 ```
 # 1. clone the repo
 git clone git@github.com:hectorredx/GTAV-Tunables.git
