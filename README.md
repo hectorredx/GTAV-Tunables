@@ -1,4 +1,4 @@
-### Decrypted Tunables of Feb 09, 2023
+### Decrypted Tunables of Feb 10, 2023
 - [PC](output/tunables-pcros.json)
 - [XBOX SX](output/tunables-xboxsx.json)
 - [PS5](output/tunables-ps5.json)
