@@ -1,3 +1,6 @@
+### Output files of 09 February 2023
+[Decrypted Tunables](output/tunables.json)
+
 ### Getting Started
 ```
 # 1. clone the repo
@@ -9,8 +12,5 @@ npm install
 # 3. start the script
 npm start
 
-# 4. Checkout the decrypted tunables saved as "tunables.json" in the output directory
+# 4. Checkout the decrypted tunables file "tunables.json" in the output directory
 ```
-
-### Output files of 09 February 2023
-[Decrypted Tunables](output/tunables.json)
