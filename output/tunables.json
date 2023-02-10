@@ -2410,6 +2410,72 @@
             }],
             "VALENTINE_GUSENBERG_AMMO": [{
                 "value": 82
+            }],
+            "-28195498": [{
+                "value": true
+            }],
+            "723824739": [{
+                "value": true
+            }],
+            "1719094606": [{
+                "value": 2880
+            }],
+            "592493395": [{
+                "value": true
+            }],
+            "3371615316": [{
+                "value": false
+            }],
+            "2351919939": [{
+                "value": true
+            }],
+            "231221373": [{
+                "value": true
+            }],
+            "3102381136": [{
+                "value": 0.2
+            }],
+            "4096276538": [{
+                "value": true
+            }],
+            "3684023098": [{
+                "value": true
+            }],
+            "2011780203": [{
+                "value": 1675944000
+            }],
+            "3986255658": [{
+                "value": true
+            }],
+            "3851472236": [{
+                "value": true
+            }],
+            "1304177530": [{
+                "value": true
+            }],
+            "1705147507": [{
+                "value": 50
+            }],
+            "2458282344": [{
+                "value": 20
+            }],
+            "4075517229": [{
+                "value": true
+            }],
+            "1147295829": [{
+                "value": 0
+            }],
+            "2084011381": [{
+                "value": true
+            }],
+            "3062737532": [{
+                "value": true
+            }],
+            "3868979043": [{
+                "value": false
+            }],
+            "2364148784": [{
+                "value": 3
             }]
         },
         "MP_Global": {
@@ -2424,6 +2490,63 @@
             }],
             "SCRIPT_MP_TIMEOUT_LONG": [{
                 "value": 180000
+            }],
+            "888133756": [{
+                "value": false
+            }],
+            "1982093354": [{
+                "value": true
+            }],
+            "1696794435": [{
+                "value": 100
+            }],
+            "-728666244": [{
+                "value": true
+            }],
+            "1219016801": [{
+                "value": true
+            }],
+            "-943921109": [{
+                "value": 0.2
+            }],
+            "2790937933": [{
+                "value": 375
+            }],
+            "460164395": [{
+                "value": 59
+            }],
+            "-366192029": [{
+                "value": true
+            }],
+            "132847157": [{
+                "value": false
+            }],
+            "435092815": [{
+                "value": true
+            }],
+            "2565598807": [{
+                "value": true
+            }],
+            "1869974395": [{
+                "value": 336
+            }],
+            "1149419074": [{
+                "value": 300000
+            }],
+            "1410609211": [{
+                "value": 300000
+            }],
+            "1069919073": [{
+                "value": 80
+            }],
+            "-661194667": [{
+                "value": 60000
+            }],
+            "2736879958": [{
+                "value": true
+            }],
+            "733476157": [{
+                "value": false
             }]
         },
         "CD_GLOBAL": {
@@ -2450,6 +2573,57 @@
             }],
             "PEER_COMPLAINER_PREFER_TO_BOOT_ESTABLISHING_CANDIDATES": [{
                 "value": false
+            }],
+            "3564631380": [{
+                "value": 50000
+            }],
+            "4198868339": [{
+                "value": 0
+            }],
+            "3927162476": [{
+                "value": true
+            }],
+            "2501989496": [{
+                "value": false
+            }],
+            "4727001941": [{
+                "value": false
+            }],
+            "2874070855": [{
+                "value": false
+            }],
+            "2834194024": [{
+                "value": 0.4
+            }],
+            "1712332342": [{
+                "value": 600
+            }],
+            "2604778589": [{
+                "value": 240
+            }],
+            "3886768967": [{
+                "value": false
+            }],
+            "3424165975": [{
+                "value": false
+            }],
+            "2815257955": [{
+                "value": "0a2f4xQv3YfzUknDu3Tn7Mpogren2C5g+q6qinWDrtdDqqZYAwX+Dj36e3SavN6rrqDokc3Gf6p1yEQf6vWuW4DxDP+6Lb3TpGERUFVyyGrciawYWTpHjFc6tmF5vdzCmNU8jgEKFBTWUwn5iXb98SwY9J3R8Um8RJmVGudK7HXiMsn6a4w8EL5sZakbxaDXYYYuWJ9+85aUO8NWTIGK3JZpQ2dralcQaoZ7i8KbmkPRV0nQCSC7aUcO1pV2nX0leJ6wSWqsY2n+xqhL3BF7TNtUcqwt9FNyYGs1gvgcI0zId3lCPiLd2b8s8CoqAtuOFKqDNGZfIhu/Mb7S1mk6+Qtk3nGO6FLUiDQSx0GliqOcRsJNPXJZeMBmPN9UA19GxhG5pkX8ZgNXi6zzLs6kAsGJcktJSDmtuWSyOrwNFA55Xw7kyHFLIqp4Yk5/CLC3z6mO5ln5sTUxrimfw7BJ1Scjkpy20nTVP0ysh3AR9KVAwK4Kz+/v/WuK3n+iRFrJHOSITOGXszXYlwe5P9b+shoLSafxF+sjgmMMXu332Sw0jbbQTscoMlUuBzDUMJFSUmvc8rdk5bwwnC52AKK2qzaqBA1iw7t75pCf+o9HNL7/mveVGS2UnANzG6SbN0JU2gPcDTWSfOEOgZbos0zGX9ZTYmpkEvdUKusHivWcRtPt+R44AMUNegmaK4BPrIgIECJxQ5XAtTdCdUxvLK5wf0m1d8pMuKAL0X/Lw/klo1E6CFcTInfnlIow61MDcqi5LOkgXdLfJFSUflBkqs55nmtZ/GehfVa+6zCthru5/2U+voz/9oC4hm9stkInkk25mBwAwL/IajtVImiy9y+0cAzELl2GCwcM/uHJdu8ZmbwaskheI5HaLK44V79CLEeQd1VPkznAsuvEXhUBZtwjWWKX502XKgy8Y9DIPy0DOpueWYji7j4a9ujVYPKVw19r+MozBLUuohZMMvYoBcCNmod9giNzQAuPdpL6N9sK+ejI8ltE1nCqfVoTxLrqdcyp0UeQNoz9phnJWb24016TcC1edkN3qMQrPWH6CjKh37es5P610yR5P+jEVqVBkU0hmHVxav0oTsh9yii/wTSt0VGemFTKdpLyJvh9F5cE4p1Le7qaC+xL4Gf3OzS7Nn+lYacffCsTUlowzh7X6mSlmw=="
+            }],
+            "2147858253": [{
+                "value": 1000
+            }],
+            "2705015629": [{
+                "value": 60
+            }],
+            "2456626529": [{
+                "value": false
+            }],
+            "3928353904": [{
+                "value": 80000
+            }],
+            "1834674266": [{
+                "value": 2.9
             }]
         },
         "CONTENT_MODIFIER_0": {
@@ -2466,6 +2640,36 @@
             }],
             "JOB_RP_CAP": [{
                 "value": 20000
+            }]
+        },
+        "MP_CNC": {
+            "-288392149": [{
+                "value": 2
+            }],
+            "-676318168": [{
+                "value": 25000
+            }],
+            "2213074477": [{
+                "value": true
+            }],
+            "-914013919": [{
+                "value": 60000
+            }],
+            "2659252557": [{
+                "value": true
+            }]
+        },
+        "MP_FM_MEMBERSHIP": {
+            "2195214166": [{
+                "value": true
+            }],
+            "734638691": [{
+                "value": 2
+            }]
+        },
+        "MP_CNC_TEAM_LOST": {
+            "-302540167": [{
+                "value": 0.2
             }]
         }
     }

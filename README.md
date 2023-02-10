@@ -1,4 +1,4 @@
-# Getting Started
+### Getting Started
 ```
 # 1. clone the repo
 git clone git@github.com:hectorredx/GTAV-Tunables.git
@@ -9,10 +9,8 @@ npm install
 # 3. start the script
 npm start
 
-# 4. Checkout the decrypted file which is saved as "tunables-decrypted.json"
+# 4. Checkout the decrypted tunables saved as "tunables.json" in the output directory
 ```
 
-# Output files of 07 February 2023
-- [Encrypted Tunables](output/tunables-encrypted.json)
-- [Decrypted Tunables](output/tunables-decrypted.json)
-- [Not Decrypted Tunables](output/tunables-not-found.json)
+### Output files of 09 February 2023
+[Decrypted Tunables](output/tunables.json)

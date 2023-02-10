@@ -131,3 +131,8 @@ dist
 
 # local stuff
 local/
+
+# debugging files
+output/dictionary.json
+output/tuneables_processing.c
+output/tunables-encrypted.json

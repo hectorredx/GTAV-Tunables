@@ -1,4 +1,5 @@
 module.exports = {
+    DEBUG: false,
     KEY: 'F06F12F49B843DADE4A7BE053505B19C9E415C95D93753450A269144D59A0115',
     PLATFORMS: ['xbox360', 'xboxone', 'xboxsx', 'ps3', 'ps4', 'ps5', 'pcros'],
     URLS: {
@@ -8,8 +9,7 @@ module.exports = {
     },
     FILE_NAMES: {
         ENCRYPTED: 'tunables-encrypted.json',
-        DECRYPTED: 'tunables-decrypted.json',
-        NOT_FOUND: 'tunables-not-found.json',
+        DECRYPTED: 'tunables.json',
         DICTIONARY: 'dictionary.json',
         TUNEABLES_PROCESSING: 'tuneables_processing.c',
     },
