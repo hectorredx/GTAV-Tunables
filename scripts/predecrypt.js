@@ -5,7 +5,7 @@ const { js_beautify: beautify } = require('js-beautify');
 const joaat = require('../lib/joaat');
 const CONFIG = require('../config');
 
-const dictionary = {};
+const dictionary = { contexts: {}, tunables: {} };
 http.get(CONFIG.URLS.TUNABLE_NAMES).then((response) => {
     // TODO: Remove CH_* Tunables once they get added to the tunable names list
     response.content.toString().split(/\r?\n/).concat([
@@ -14,9 +14,18 @@ http.get(CONFIG.URLS.TUNABLE_NAMES).then((response) => {
         'CH_VAULT_WEIGHTING_GOLD',
         'CH_VAULT_WEIGHTING_DIAMONDS',
     ]).forEach(line => {
-        if (line.length) dictionary[line] = joaat(line);
+        if (line.length) {
+            const { hex: hash } = joaat(line);
+            dictionary.tunables[line] = { hash, sum: {} };
+            const sumHex = (x, y) => (parseInt(x, 16) + parseInt(y, 16)).toString(16).toLocaleUpperCase();
+            for (context of CONFIG.TUNABLE_CONTEXTS) {
+                const contextJoaat = joaat(context);
+                dictionary.contexts[context] = contextJoaat;
+                dictionary.tunables[line].sum[context] = sumHex(hash, contextJoaat.hex);
+            }
+        }
     });
-    if (Object.keys(dictionary).length) fs.writeFile(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`), beautify(JSON.stringify(dictionary)), () => { if (CONFIG.DEBUG) console.log('Tunables Dictionary downloaded'); });
+    if (Object.keys(dictionary).length) fs.writeFile(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`), beautify(JSON.stringify(dictionary), { indent_size: 2 }), () => { if (CONFIG.DEBUG) console.log('Tunables Dictionary downloaded'); });
 });
 
 http.get(CONFIG.URLS.TUNEABLES_PROCESSING).then((response) => {
