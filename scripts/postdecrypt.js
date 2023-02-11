@@ -1,13 +1,15 @@
 const fs = require('fs');
 const upath = require('upath');
 const { js_beautify: beautify } = require('js-beautify');
+const jsonabc = require('jsonabc');
 const CONFIG = require('../config');
-
+const contentDictionary = require('../lib/content_dictionary.json');
 
 const dictionaryFileRawData = fs.readFileSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`));
 const tuneablesProcessing = fs.readFileSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
 
 const dictionary = JSON.parse(dictionaryFileRawData);
+let tunablesDataDecryptedJson = {};
 let tunablesDataDecryptedStringified;
 let totalDecryptedTunables;
 
@@ -22,7 +24,18 @@ CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
     } else {
         const tunablesFileRawData = fs.readFileSync(encryptedPath);
         const tunablesData = JSON.parse(tunablesFileRawData);
-        const tunablesDataDecrypted = { ...tunablesData, tunables: {} };
+        const tunablesDataDecrypted = {
+            ...tunablesData,
+            contentlists: tunablesData.contentlists.map((contentlist) => {
+                return contentlist.map((content) => {
+                    const isInDictionary = Object.keys(contentDictionary).includes(content.toString());
+                    if (isInDictionary) return contentDictionary[content];
+                    return content;
+                });
+            }),
+            tunables: {}
+        };
+        tunablesDataDecryptedJson = { ...tunablesDataDecrypted };
         tunablesDataDecryptedStringified = JSON.stringify(tunablesDataDecrypted).slice(0, -2);
         totalDecryptedTunables = 0;
         let tunablesWithoutNames = {};
@@ -36,7 +49,12 @@ CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
             lookupTunable(key, value, true);
         }
 
-        fs.writeFileSync(decryptedPath, beautify(tunablesDataDecryptedStringified.concat('}}'), { indent_size: 2 }));
+        const main = beautify(JSON.stringify(omit(tunablesDataDecryptedJson, ['contentlists', 'tunables'])), { indent_size: 4 });
+        const contentlists = beautify(JSON.stringify({ contentlists: tunablesDataDecryptedJson.contentlists }), { wrap_line_length: 1 });
+        const tunables = beautify(jsonabc.sort(JSON.stringify({ tunables: tunablesDataDecryptedJson.tunables })), { indent_size: 4 });
+        fs.writeFileSync(decryptedPath, main.substring(0, main.length - 2)
+            .concat(',', contentlists.substring(1, contentlists.length - 1),
+                ',', tunables.substring(1, tunables.length - 1), '}'));
         console.log(`\n${platform.toUpperCase()} Tunables Decrypted`)
         if (CONFIG.DEBUG) {
             console.log('\nTotal Encrypted Tunables = ', Object.keys(tunablesData.tunables).length);
@@ -88,6 +106,7 @@ function stringify(mainString, context, key, value) {
         if (dictionaryKey && CONFIG.DEBUG) console.log(`found ${dictionaryKey} of hash ${vValue}`);
     }
 
+    set(tunablesDataDecryptedJson, `tunables.${context}.${key}`, vValue);
     const valueString = ['boolean', 'number'].includes(typeof vValue) ? vValue : `"${vValue}"`;
     if (mainString.includes(context)) {
         const first = mainString.substring(0, mainString.indexOf(`"${context}":`));
@@ -110,4 +129,20 @@ function updateReadMe() {
 
 function findKey(obj, predicate = o => o) {
     return Object.keys(obj).find(key => predicate(obj[key], key, obj))
+}
+
+function omit(obj, props) {
+    obj = { ...obj }
+    props.forEach(prop => delete obj[prop])
+    return obj
+}
+
+function set(obj, path, value) {
+    const pathArray = Array.isArray(path) ? path : path.match(/([^[.\]])+/g)
+
+    pathArray.reduce((acc, key, i) => {
+        if (acc[key] === undefined) acc[key] = {}
+        if (i === pathArray.length - 1) acc[key] = value
+        return acc[key]
+    }, obj)
 }
