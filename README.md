@@ -1,3 +1,4 @@
+[![GitHub version](https://badge.fury.io/gh/hectorredx%2FGTAV-Tunables.svg)](https://badge.fury.io/gh/hectorredx%2FGTAV-Tunables)
 [![master](https://img.shields.io/github/last-commit/badges/shields/master)](https://github.com/hectorredx/GTAV-Tunables/commits/master)
 [![Decrypt Tunables](https://github.com/hectorredx/GTAV-Tunables/actions/workflows/decrypt.yml/badge.svg?event=workflow_dispatch)](https://github.com/hectorredx/GTAV-Tunables/actions/workflows/decrypt.yml)
 
