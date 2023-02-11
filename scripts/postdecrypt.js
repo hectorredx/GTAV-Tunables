@@ -61,7 +61,7 @@ function lookupTunable(key, value, missingName = false) {
             const hashUnsigned = parseInt(key, 16) - contextValue.unsigned;
             const isHashInTuneablesProcessing = tuneablesProcessing.includes(hashSigned) || tuneablesProcessing.includes(hashUnsigned);
             if (isHashInTuneablesProcessing) {
-                tunablesDataDecryptedStringified = stringify(tunablesDataDecryptedStringified, contextKey, hashSigned, value);
+                tunablesDataDecryptedStringified = stringify(tunablesDataDecryptedStringified, contextKey, key, value);
                 totalDecryptedTunables++;
                 return true;;
             }
