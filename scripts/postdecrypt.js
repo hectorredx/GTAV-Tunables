@@ -3,7 +3,6 @@ const upath = require('upath');
 const { js_beautify: beautify } = require('js-beautify');
 const jsonabc = require('jsonabc');
 const CONFIG = require('../config');
-const contentDictionary = require('../lib/content_dictionary.json');
 
 const dictionaryFileRawData = fs.readFileSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`));
 const tuneablesProcessing = fs.readFileSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
@@ -28,9 +27,9 @@ CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
             ...tunablesData,
             contentlists: tunablesData.contentlists.map((contentlist) => {
                 return contentlist.map((content) => {
-                    const isInDictionary = Object.keys(contentDictionary).includes(content.toString());
-                    if (isInDictionary) return contentDictionary[content];
-                    return content;
+                    const isInDictionary = Object.keys(dictionary.jobs).includes(content.toString());
+                    if (isInDictionary) return dictionary.jobs[content];
+                    return content.toString();
                 });
             }),
             tunables: {}
