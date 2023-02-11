@@ -1,6 +1,6 @@
 [![Decrypt Tunables](https://github.com/hectorredx/GTAV-Tunables/actions/workflows/decrypt.yml/badge.svg?event=workflow_dispatch)](https://github.com/hectorredx/GTAV-Tunables/actions/workflows/decrypt.yml)
 
-### Decrypted Tunables of Feb 11, 2023
+### Current Decrypted Tunables
 - [PC](output/tunables-pcros.json)
 - [XBOX SX](output/tunables-xboxsx.json)
 - [PS5](output/tunables-ps5.json)
@@ -29,9 +29,11 @@ npm start
 
 ### Special Thanks
 - [Apokalypt](https://github.com/Apokalypt)
+- [Pbrln](https://github.com/pbrln)
 - [PLTytus](https://github.com/PLTytus)
 - [RDO.GG API](https://rdo.gg/api)
-- [root-cause](https://github.com/root-cause)
+- [Root-Cause](https://github.com/root-cause)
+- [ShinyWasabi](https://github.com/ShinyWasabi)
 - [Tez2](https://twitter.com/TezFunz2)
 - [Wildbrick142](https://github.com/Wildbrick142)
 
