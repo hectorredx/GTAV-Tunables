@@ -26,6 +26,8 @@ npm start
 ---
 
 ### Special Thanks
-- [Apokalypt](https://github.com/Apokalypt) for the decryption instructions
-- [Wildbrick142](https://github.com/Wildbrick142) for [the tunables names list](https://github.com/Wildbrick142/V-Tunable-Names)
-- [root-cause](https://github.com/root-cause) for [the decompiled scripts](https://github.com/root-cause/v-decompiled-scripts)
+- [Apokalypt](https://github.com/Apokalypt)
+- [Wildbrick142](https://github.com/Wildbrick142)
+- [root-cause](https://github.com/root-cause)
+- [PLTytus](https://github.com/PLTytus)
+- [RDO.GG API](https://rdo.gg/api)
