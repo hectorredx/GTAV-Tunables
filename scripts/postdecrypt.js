@@ -68,7 +68,6 @@ CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
     }
 });
 
-if (!CONFIG.DEBUG) updateReadMe();
 console.log('\nDone!');
 
 function lookupTunable(key, value, missingName = false) {
@@ -95,7 +94,7 @@ function lookupTunable(key, value, missingName = false) {
     return false;
 }
 
-// Workaround Node.js large string size limit when stringifying with JSON.stringify
+// Hacky workaround Node.js large string size limit when stringifying with JSON.stringify
 function stringify(mainString, context, key, value) {
     let vValue = value[0].value;
 
@@ -116,32 +115,22 @@ function stringify(mainString, context, key, value) {
     }
 }
 
-function updateReadMe() {
-    const readMePath = './README.md';
-    const readMeFile = fs.readFileSync(readMePath);
-    const date = new Date();
-    const dateFormatted = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).format(date);
-    const dateLine = readMeFile.toString().split(/\r?\n/).find(line => line.includes(date.getFullYear()));
-    const dateLineUpdated = dateLine.substring(0, dateLine.indexOf(date.getFullYear()) - 8).concat(dateFormatted);
-    fs.writeFileSync(readMePath, readMeFile.toString().replace(dateLine, dateLineUpdated));
-}
-
 function findKey(obj, predicate = o => o) {
-    return Object.keys(obj).find(key => predicate(obj[key], key, obj))
+    return Object.keys(obj).find(key => predicate(obj[key], key, obj));
 }
 
 function omit(obj, props) {
-    obj = { ...obj }
-    props.forEach(prop => delete obj[prop])
-    return obj
+    obj = { ...obj };
+    props.forEach(prop => delete obj[prop]);
+    return obj;
 }
 
 function set(obj, path, value) {
-    const pathArray = Array.isArray(path) ? path : path.match(/([^[.\]])+/g)
+    const pathArray = Array.isArray(path) ? path : path.match(/([^[.\]])+/g);
 
     pathArray.reduce((acc, key, i) => {
-        if (acc[key] === undefined) acc[key] = {}
-        if (i === pathArray.length - 1) acc[key] = value
-        return acc[key]
-    }, obj)
+        if (acc[key] === undefined) acc[key] = {};
+        if (i === pathArray.length - 1) acc[key] = value;
+        return acc[key];
+    }, obj);
 }
