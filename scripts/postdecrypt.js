@@ -1,7 +1,6 @@
 const fs = require('fs');
 const upath = require('upath');
 const { js_beautify: beautify } = require('js-beautify');
-const joaat = require('../lib/joaat');
 const CONFIG = require('../config');
 
 
@@ -11,7 +10,6 @@ const tuneablesProcessing = fs.readFileSync(upath.normalize(`./output/${CONFIG.F
 const dictionary = JSON.parse(dictionaryFileRawData);
 let tunablesDataDecryptedStringified;
 let totalDecryptedTunables;
-let TUNABLE_CONTEXT = {};
 
 console.log('Decrypting ...');
 
@@ -28,13 +26,6 @@ CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
         tunablesDataDecryptedStringified = JSON.stringify(tunablesDataDecrypted).slice(0, -2);
         totalDecryptedTunables = 0;
         let tunablesWithoutNames = {};
-        TUNABLE_CONTEXT = {};
-        CONFIG.TUNABLE_CONTEXTS.forEach(context => TUNABLE_CONTEXT[context] = joaat(context));
-        tunablesData.contentlists[0].forEach((_, i) => {
-            const { TUNABLE_CONTENT_CONTEXTS } = CONFIG;
-            TUNABLE_CONTEXT[TUNABLE_CONTENT_CONTEXTS[0].concat('_', i)] = joaat(TUNABLE_CONTENT_CONTEXTS[0].concat('_', i))
-            TUNABLE_CONTEXT[TUNABLE_CONTENT_CONTEXTS[1].concat('_', i)] = joaat(TUNABLE_CONTENT_CONTEXTS[1].concat('_', i))
-        });
 
         for (const [key, value] of Object.entries(tunablesData.tunables)) {
             const hasName = lookupTunable(key, value);
@@ -45,7 +36,7 @@ CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
             lookupTunable(key, value, true);
         }
 
-        fs.writeFileSync(decryptedPath, beautify(tunablesDataDecryptedStringified.concat('}}')));
+        fs.writeFileSync(decryptedPath, beautify(tunablesDataDecryptedStringified.concat('}}'), { indent_size: 2 }));
         console.log(`\n${platform.toUpperCase()} Tunables Decrypted`)
         if (CONFIG.DEBUG) {
             console.log('\nTotal Encrypted Tunables = ', Object.keys(tunablesData.tunables).length);
@@ -64,10 +55,10 @@ if (!CONFIG.DEBUG) updateReadMe();
 console.log('\nDone!');
 
 function lookupTunable(key, value, missingName = false) {
-    for (const [contextKey, contextValue] of Object.entries(TUNABLE_CONTEXT)) {
-        const hashSigned = parseInt(key, 16) - contextValue.signed;
-        const hashUnsigned = parseInt(key, 16) - contextValue.unsigned;
+    for (const [contextKey, contextValue] of Object.entries(dictionary.contexts)) {
         if (missingName) {
+            const hashSigned = parseInt(key, 16) - contextValue.signed;
+            const hashUnsigned = parseInt(key, 16) - contextValue.unsigned;
             const isHashInTuneablesProcessing = tuneablesProcessing.includes(hashSigned) || tuneablesProcessing.includes(hashUnsigned);
             if (isHashInTuneablesProcessing) {
                 tunablesDataDecryptedStringified = stringify(tunablesDataDecryptedStringified, contextKey, hashSigned, value);
@@ -75,9 +66,10 @@ function lookupTunable(key, value, missingName = false) {
                 return true;;
             }
         } else {
-            const tunableName = findKey(dictionary, (x) => x.signed == hashSigned || x.unsigned == hashUnsigned);
-            if (tunableName) {
-                tunablesDataDecryptedStringified = stringify(tunablesDataDecryptedStringified, contextKey, tunableName, value);
+            const dictionaryKey = findKey(dictionary.tunables, x => x.sum[contextKey].includes(key));
+            if (dictionaryKey) {
+                if (CONFIG.DEBUG) console.log(`found key ${key} in ${contextKey} as ${dictionaryKey}`);
+                tunablesDataDecryptedStringified = stringify(tunablesDataDecryptedStringified, contextKey, dictionaryKey, value);
                 totalDecryptedTunables++;
                 return true;
             }
@@ -86,14 +78,15 @@ function lookupTunable(key, value, missingName = false) {
     return false;
 }
 
+// Workaround Node.js large string size limit when stringifying with JSON.stringify
 function stringify(mainString, context, key, value) {
     const valueString = ['boolean', 'number'].includes(typeof value[0].value) ? value[0].value : `"${value[0].value}"`;
     if (mainString.includes(context)) {
         const first = mainString.substring(0, mainString.indexOf(`"${context}":`));
         const last = mainString.substring(mainString.indexOf(`"${context}":`));
-        return first.concat(last.replace('}]}', `}],"${key}": [{"value":${valueString}}]}`));
+        return first.concat(last.replace('}', `,"${key}":${valueString}}`));
     } else {
-        return mainString.concat(mainString.endsWith('{') ? '' : ',', `"${context}":{"${key}": [{"value":${valueString}}]}`);
+        return mainString.concat(mainString.endsWith('{') ? '' : ',', `"${context}":{"${key}":${valueString}}`);
     }
 }
 
