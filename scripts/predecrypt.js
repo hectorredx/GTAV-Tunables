@@ -2,9 +2,10 @@ const fs = require('fs');
 const upath = require('upath');
 const http = require('http-wrapper');
 const joaat = require('../lib/joaat');
+const jobsDictionary = require('../lib/jobs_dictionary.json');
 const CONFIG = require('../config');
 
-const dictionary = { contexts: {}, tunables: {}, other: {} };
+const dictionary = { contexts: {}, tunables: {}, jobs: {}, other: {} };
 
 http.get(CONFIG.URLS.TUNABLE_NAMES).then((response) => {
     // TODO: Remove CH_* Tunables once they get added to the tunable names list
@@ -33,6 +34,9 @@ http.get(CONFIG.URLS.TUNABLE_NAMES).then((response) => {
                 dictionary.other[key] = hash;
             }
         });
+        for (const [key, value] of Object.entries(jobsDictionary)) {
+            dictionary.jobs[joaat(key.toLowerCase()).signed] = value;
+        }
         if (Object.keys(dictionary).length) fs.writeFile(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`), JSON.stringify(dictionary), () => { if (CONFIG.DEBUG) console.log('Tunables Dictionary downloaded'); });
     });
 });
