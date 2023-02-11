@@ -6,6 +6,7 @@ module.exports = {
         TUNABLES: 'http://prod.cloud.rockstargames.com/titles/gta5/{platform}/0x1a098062.json',
         TUNABLE_NAMES: 'https://raw.githubusercontent.com/Wildbrick142/V-Tunable-Names/main/tunable_list.txt',
         TUNEABLES_PROCESSING: 'https://raw.githubusercontent.com/root-cause/v-decompiled-scripts/master/tuneables_processing.c',
+        GTA_DICTIONARY: 'https://raw.githubusercontent.com/calamity-inc/gta-v-joaat-hash-db/senpai/out/dictionary-dec_signed.tsv',
     },
     FILE_NAMES: {
         ENCRYPTED: 'tunables-{platform}-encrypted.json',
