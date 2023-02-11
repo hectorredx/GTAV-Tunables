@@ -1,3 +1,5 @@
+[![Decrypt Tunables](https://github.com/hectorredx/GTAV-Tunables/actions/workflows/decrypt.yml/badge.svg?event=workflow_dispatch)](https://github.com/hectorredx/GTAV-Tunables/actions/workflows/decrypt.yml)
+
 ### Decrypted Tunables of Feb 11, 2023
 - [PC](output/tunables-pcros.json)
 - [XBOX SX](output/tunables-xboxsx.json)
@@ -27,7 +29,8 @@ npm start
 
 ### Special Thanks
 - [Apokalypt](https://github.com/Apokalypt)
-- [Wildbrick142](https://github.com/Wildbrick142)
-- [root-cause](https://github.com/root-cause)
 - [PLTytus](https://github.com/PLTytus)
 - [RDO.GG API](https://rdo.gg/api)
+- [root-cause](https://github.com/root-cause)
+- [Tez2](https://twitter.com/TezFunz2)
+- [Wildbrick142](https://github.com/Wildbrick142)
