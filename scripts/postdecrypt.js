@@ -80,7 +80,15 @@ function lookupTunable(key, value, missingName = false) {
 
 // Workaround Node.js large string size limit when stringifying with JSON.stringify
 function stringify(mainString, context, key, value) {
-    const valueString = ['boolean', 'number'].includes(typeof value[0].value) ? value[0].value : `"${value[0].value}"`;
+    let vValue = value[0].value;
+
+    if (typeof vValue === 'number') {
+        const dictionaryKey = findKey(dictionary.other, x => x == vValue);
+        if (dictionaryKey) vValue = dictionaryKey;
+        if (dictionaryKey && CONFIG.DEBUG) console.log(`found ${dictionaryKey} of hash ${vValue}`);
+    }
+
+    const valueString = ['boolean', 'number'].includes(typeof vValue) ? vValue : `"${vValue}"`;
     if (mainString.includes(context)) {
         const first = mainString.substring(0, mainString.indexOf(`"${context}":`));
         const last = mainString.substring(mainString.indexOf(`"${context}":`));

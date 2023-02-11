@@ -5,7 +5,8 @@ const { js_beautify: beautify } = require('js-beautify');
 const joaat = require('../lib/joaat');
 const CONFIG = require('../config');
 
-const dictionary = { contexts: {}, tunables: {} };
+const dictionary = { contexts: {}, tunables: {}, other: {} };
+
 http.get(CONFIG.URLS.TUNABLE_NAMES).then((response) => {
     // TODO: Remove CH_* Tunables once they get added to the tunable names list
     response.content.toString().split(/\r?\n/).concat([
@@ -25,8 +26,19 @@ http.get(CONFIG.URLS.TUNABLE_NAMES).then((response) => {
             }
         }
     });
-    if (Object.keys(dictionary).length) fs.writeFile(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`), beautify(JSON.stringify(dictionary), { indent_size: 2 }), () => { if (CONFIG.DEBUG) console.log('Tunables Dictionary downloaded'); });
+
+    http.get(CONFIG.URLS.GTA_DICTIONARY).then((response) => {
+        response.content.toString().split(/\r?\n/).forEach((line, index) => {
+            if (line.length && index) {
+                const [hash, key] = line.split(/\t/);
+                dictionary.other[key] = hash;
+            }
+        });
+        if (Object.keys(dictionary).length) fs.writeFile(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`), JSON.stringify(dictionary), () => { if (CONFIG.DEBUG) console.log('Tunables Dictionary downloaded'); });
+    });
 });
+
+
 
 http.get(CONFIG.URLS.TUNEABLES_PROCESSING).then((response) => {
     fs.writeFile(upath.normalize(`./output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`), response.content.toString(), () => { if (CONFIG.DEBUG) console.log('Tunables Processing downloaded'); });
