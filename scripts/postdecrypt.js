@@ -15,7 +15,7 @@ let TUNABLE_CONTEXT = {};
 
 console.log('Decrypting ...');
 
-CONFIG.PLATFORMS.forEach((platform, index) => {
+CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
     const encryptedPath = upath.normalize(`./output/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
     const decryptedPath = upath.normalize(`./output/${CONFIG.FILE_NAMES.DECRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
 
