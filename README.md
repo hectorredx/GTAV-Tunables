@@ -1,15 +1,14 @@
-[![master](https://img.shields.io/github/last-commit/hectorredx/GTAV-Tunables/master?color=269ED5&label=updated)](https://github.com/hectorredx/GTAV-Tunables/commits/master)
-[![GitHub version](https://badge.fury.io/gh/hectorredx%2FGTAV-Tunables.svg)](https://badge.fury.io/gh/hectorredx%2FGTAV-Tunables)
 [![Decrypt Tunables](https://github.com/hectorredx/GTAV-Tunables/actions/workflows/decrypt.yml/badge.svg?event=workflow_dispatch)](https://github.com/hectorredx/GTAV-Tunables/actions/workflows/decrypt.yml)
+[![master](https://img.shields.io/github/last-commit/hectorredx/GTAV-Tunables/master?color=269ED5&label=updated)](https://github.com/hectorredx/GTAV-Tunables/commits/master)
 
 ### Current Decrypted Tunables
-- [PC](output/tunables-pcros.json)
-- [XBOX SX](output/tunables-xboxsx.json)
-- [PS5](output/tunables-ps5.json)
-- [XBOX ONE](output/tunables-xboxone.json)
-- [PS4](output/tunables-ps4.json)
-- [XBOX 360](output/tunables-xbox360.json)[^1]
-- [PS3](output/tunables-ps3.json)[^1]
+- [PC](tunables-pcros.json)
+- [XBOX SX](tunables-xboxsx.json)
+- [PS5](tunables-ps5.json)
+- [XBOX ONE](tunables-xboxone.json)
+- [PS4](tunables-ps4.json)
+- [XBOX 360](tunables-xbox360.json)[^1]
+- [PS3](tunables-ps3.json)[^1]
 
 ---
 
@@ -24,7 +23,7 @@ npm install
 # 3. start the script
 npm start
 
-# 4. Checkout the decrypted tunables files in the output directory
+# 4. Checkout the decrypted tunables files in the root directory
 ```
 
 ---
