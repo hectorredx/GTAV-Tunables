@@ -2,7 +2,7 @@ const fs = require('fs');
 const upath = require('upath');
 const http = require('http-wrapper');
 const joaat = require('../lib/joaat');
-const jobsDictionary = require('../lib/jobs_dictionary.json');
+const jobsDictionary = require('../static/jobs_dictionary.json');
 const CONFIG = require('../config');
 
 const dictionary = { contexts: {}, tunables: {}, jobs: {}, other: {} };

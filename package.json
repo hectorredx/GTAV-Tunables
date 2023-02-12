@@ -2,14 +2,14 @@
   "name": "tunables-gtav",
   "version": "2.0.0",
   "description": "Downloads and decrypts the latest tunables file.",
-  "main": "index.js",
+  "main": "src/index.js",
   "author": "ECB2",
   "license": "MIT",
   "scripts": {
     "start": "npm run decrypt",
-    "predecrypt": "node scripts/predecrypt.js",
-    "decrypt": "node scripts/decrypt.js",
-    "postdecrypt": "node scripts/postdecrypt.js"
+    "predecrypt": "node src/scripts/predecrypt.js",
+    "decrypt": "node src/scripts/decrypt.js",
+    "postdecrypt": "node src/scripts/postdecrypt.js"
   },
   "dependencies": {
     "aes-js": "^2.1.1",
