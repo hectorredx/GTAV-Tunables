@@ -3,11 +3,9 @@ const upath = require('upath');
 const { js_beautify: beautify } = require('js-beautify');
 const jsonabc = require('jsonabc');
 const CONFIG = require('../config');
+const dictionary = require(upath.normalize(`../static/${CONFIG.FILE_NAMES.DICTIONARY}`));
+const tuneablesProcessing = fs.readFileSync(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
 
-const dictionaryFileRawData = fs.readFileSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`));
-const tuneablesProcessing = fs.readFileSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
-
-const dictionary = JSON.parse(dictionaryFileRawData);
 let tunablesDataDecryptedJson = {};
 let tunablesDataDecryptedStringified;
 let totalDecryptedTunables;
@@ -15,8 +13,8 @@ let totalDecryptedTunables;
 console.log('Decrypting ...');
 
 CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
-    const encryptedPath = upath.normalize(`./output/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
-    const decryptedPath = upath.normalize(`./output/${CONFIG.FILE_NAMES.DECRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
+    const encryptedPath = upath.normalize(`./src/static/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
+    const decryptedPath = upath.normalize(`./${CONFIG.FILE_NAMES.DECRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
 
     if (['ps3', 'xbox360'].includes(platform)) {
         fs.renameSync(encryptedPath, decryptedPath);
@@ -25,13 +23,7 @@ CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
         const tunablesData = JSON.parse(tunablesFileRawData);
         const tunablesDataDecrypted = {
             ...tunablesData,
-            contentlists: tunablesData.contentlists.map((contentlist) => {
-                return contentlist.map((content) => {
-                    const isInDictionary = Object.keys(dictionary.jobs).includes(content.toString());
-                    if (isInDictionary) return dictionary.jobs[content];
-                    return content.toString();
-                });
-            }),
+            contentlists: tunablesData.contentlists.map((contentlist) => contentlist.map((content) => getJobName(content))),
             tunables: {}
         };
         tunablesDataDecryptedJson = { ...tunablesDataDecrypted };
@@ -49,26 +41,31 @@ CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
         }
 
         const main = beautify(JSON.stringify(omit(tunablesDataDecryptedJson, ['contentlists', 'tunables'])), { indent_size: 4 });
-        const contentlists = beautify(JSON.stringify({ contentlists: tunablesDataDecryptedJson.contentlists }), { wrap_line_length: 1 });
+        const contentlists = beautify(JSON.stringify({ contentlists: tunablesDataDecryptedJson.contentlists }), { indent_size: 4, wrap_line_length: 1, space_in_paren: true });
         const tunables = beautify(jsonabc.sort(JSON.stringify({ tunables: tunablesDataDecryptedJson.tunables })), { indent_size: 4 });
         fs.writeFileSync(decryptedPath, main.substring(0, main.length - 2)
-            .concat(',', contentlists.substring(1, contentlists.length - 1),
+            .concat(',', contentlists.substring(1, contentlists.length - 2),
                 ',', tunables.substring(1, tunables.length - 1), '}'));
-        console.log(`\n${platform.toUpperCase()} Tunables Decrypted`)
+        console.log(`\n${platform.toUpperCase()} Tunables Decrypted`);
         if (CONFIG.DEBUG) {
             console.log('\nTotal Encrypted Tunables = ', Object.keys(tunablesData.tunables).length);
             console.log('Total Decrypted Tunables = ', totalDecryptedTunables);
         } else {
             fs.unlinkSync(encryptedPath);
             if (index === CONFIG.PLATFORMS.length - 1) {
-                fs.unlinkSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`));
-                fs.unlinkSync(upath.normalize(`./output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
+                fs.unlinkSync(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.DICTIONARY}`));
+                fs.unlinkSync(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
             }
         }
     }
 });
 
 console.log('\nDone!');
+
+function getJobName(content) {
+    if (content in dictionary.jobs) return dictionary.jobs[content];
+    return content.toString();
+}
 
 function lookupTunable(key, value, missingName = false) {
     for (const [contextKey, contextValue] of Object.entries(dictionary.contexts)) {
@@ -85,6 +82,8 @@ function lookupTunable(key, value, missingName = false) {
             const dictionaryKey = findKey(dictionary.tunables, x => x.sum[contextKey].includes(key));
             if (dictionaryKey) {
                 if (CONFIG.DEBUG) console.log(`found key ${key} in ${contextKey} as ${dictionaryKey}`);
+                const isRootContent = dictionaryKey.includes('ROOT_CONTENT_ID');
+                if (isRootContent) value[0].value = getJobName(value[0].value);
                 tunablesDataDecryptedStringified = stringify(tunablesDataDecryptedStringified, contextKey, dictionaryKey, value);
                 totalDecryptedTunables++;
                 return true;
@@ -100,7 +99,7 @@ function stringify(mainString, context, key, value) {
 
     if (typeof vValue === 'number') {
         const dictionaryKey = findKey(dictionary.other, x => x == vValue);
-        if (dictionaryKey) vValue = dictionaryKey;
+        if (dictionaryKey) vValue = dictionaryKey.toUpperCase();
         if (dictionaryKey && CONFIG.DEBUG) console.log(`found ${dictionaryKey} of hash ${vValue}`);
     }
 

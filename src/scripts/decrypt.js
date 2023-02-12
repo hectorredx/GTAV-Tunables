@@ -16,7 +16,7 @@ function decryptTunablesToHex(encrypted) {
 
 CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach(platform => {
     const url = CONFIG.URLS.TUNABLES.replace(new RegExp('{platform}', 'g'), platform);
-    const path = upath.normalize(`./output/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
+    const path = upath.normalize(`./src/static/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
     return http.get(url).then(res => {
         fs.writeFile(path, beautify(decryptTunablesToHex(res.content)), null, () => { if (CONFIG.DEBUG) console.log(`${platform.toUpperCase()} Encrypted Tunables downloaded`); });
     })

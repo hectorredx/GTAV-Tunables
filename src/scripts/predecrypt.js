@@ -2,8 +2,8 @@ const fs = require('fs');
 const upath = require('upath');
 const http = require('http-wrapper');
 const joaat = require('../lib/joaat');
-const jobsDictionary = require('../static/jobs_dictionary.json');
 const CONFIG = require('../config');
+const jobsDictionary = require(upath.normalize(`../static/${CONFIG.FILE_NAMES.JOBS_DICTIONARY}`));
 
 const dictionary = { contexts: {}, tunables: {}, jobs: {}, other: {} };
 
@@ -37,12 +37,12 @@ http.get(CONFIG.URLS.TUNABLE_NAMES).then((response) => {
         for (const [key, value] of Object.entries(jobsDictionary)) {
             dictionary.jobs[joaat(key.toLowerCase()).signed] = value;
         }
-        if (Object.keys(dictionary).length) fs.writeFile(upath.normalize(`./output/${CONFIG.FILE_NAMES.DICTIONARY}`), JSON.stringify(dictionary), () => { if (CONFIG.DEBUG) console.log('Tunables Dictionary downloaded'); });
+        if (Object.keys(dictionary).length) fs.writeFile(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.DICTIONARY}`), JSON.stringify(dictionary), () => { if (CONFIG.DEBUG) console.log('Tunables Dictionary downloaded'); });
     });
 });
 
 
 
 http.get(CONFIG.URLS.TUNEABLES_PROCESSING).then((response) => {
-    fs.writeFile(upath.normalize(`./output/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`), response.content.toString(), () => { if (CONFIG.DEBUG) console.log('Tunables Processing downloaded'); });
+    fs.writeFile(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`), response.content.toString(), () => { if (CONFIG.DEBUG) console.log('Tunables Processing downloaded'); });
 });
