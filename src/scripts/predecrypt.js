@@ -8,13 +8,7 @@ const jobsDictionary = require(upath.normalize(`../static/${CONFIG.FILE_NAMES.JO
 const dictionary = { contexts: {}, tunables: {}, jobs: {}, other: {} };
 
 http.get(CONFIG.URLS.TUNABLE_NAMES).then((response) => {
-    // TODO: Remove CH_* Tunables once they get added to the tunable names list
-    response.content.toString().split(/\r?\n/).concat([
-        'CH_VAULT_WEIGHTING_ART',
-        'CH_VAULT_WEIGHTING_CASH',
-        'CH_VAULT_WEIGHTING_GOLD',
-        'CH_VAULT_WEIGHTING_DIAMONDS',
-    ]).forEach(line => {
+    response.content.toString().split(/\r?\n/).forEach(line => {
         if (line.length) {
             const { hex: hash } = joaat(line);
             dictionary.tunables[line] = { hash, sum: {} };
