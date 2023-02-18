@@ -34,9 +34,3 @@ http.get(CONFIG.URLS.TUNABLE_NAMES).then((response) => {
         if (Object.keys(dictionary).length) fs.writeFile(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.DICTIONARY}`), JSON.stringify(dictionary), () => { if (CONFIG.DEBUG) console.log('Tunables Dictionary downloaded'); });
     });
 });
-
-
-
-http.get(CONFIG.URLS.TUNEABLES_PROCESSING).then((response) => {
-    fs.writeFile(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`), response.content.toString(), () => { if (CONFIG.DEBUG) console.log('Tunables Processing downloaded'); });
-});

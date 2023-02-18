@@ -3,11 +3,11 @@
 [![master](https://img.shields.io/github/last-commit/hectorredx/GTAV-Tunables/master?color=269ED5&label=updated)](https://github.com/hectorredx/GTAV-Tunables/commits/master)
 
 ### Current Decrypted Tunables
-- [PC](tunables-pcros.json)
-- [XBOX SX](tunables-xboxsx.json)
-- [PS5](tunables-ps5.json)
-- [XBOX ONE](tunables-xboxone.json)
-- [PS4](tunables-ps4.json)
+- [PC](tunables-pcros-decrypted.json)
+- [XBOX SX](tunables-xboxsx-decrypted.json)
+- [PS5](tunables-ps5-decrypted.json)
+- [XBOX ONE](tunables-xboxone-decrypted.json)
+- [PS4](tunables-ps4-decrypted.json)
 - [XBOX 360](tunables-xbox360.json)[^1]
 - [PS3](tunables-ps3.json)[^1]
 

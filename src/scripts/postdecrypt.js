@@ -1,57 +1,53 @@
 const fs = require('fs');
 const upath = require('upath');
-const { js_beautify: beautify } = require('js-beautify');
-const jsonabc = require('jsonabc');
+const { findKey, mapToObject, stripHexPrefix } = require('../utils');
 const CONFIG = require('../config');
 const dictionary = require(upath.normalize(`../static/${CONFIG.FILE_NAMES.DICTIONARY}`));
-const tuneablesProcessing = fs.readFileSync(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
 
 let tunablesDataDecryptedJson = {};
-let tunablesDataDecryptedStringified;
 let totalDecryptedTunables;
+let previousContext = null;
+let tunablesMap = new Map();
 
 console.log('Decrypting ...');
 
-CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 6 : 0).forEach((platform, index) => {
-    const encryptedPath = upath.normalize(`./src/static/${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
+CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 5 : 0).forEach((platform, index) => {
+    const encryptedPath = upath.normalize(`./${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
     const decryptedPath = upath.normalize(`./${CONFIG.FILE_NAMES.DECRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
 
     if (['ps3', 'xbox360'].includes(platform)) {
-        fs.renameSync(encryptedPath, decryptedPath);
+        fs.renameSync(encryptedPath, decryptedPath.replace('-decrypted', ''));
     } else {
         const tunablesFileRawData = fs.readFileSync(encryptedPath);
         const tunablesData = JSON.parse(tunablesFileRawData);
         const tunablesDataDecrypted = {
             ...tunablesData,
             contentlists: tunablesData.contentlists.map((contentlist) => contentlist.map((content) => getJobName(content))),
-            tunables: {}
+            tunables: {},
         };
         tunablesDataDecryptedJson = { ...tunablesDataDecrypted };
-        tunablesDataDecryptedStringified = JSON.stringify(tunablesDataDecrypted).slice(0, -2);
+        tunablesMap = new Map();
         totalDecryptedTunables = 0;
-        let tunablesWithoutNames = {};
+        const totalEncryptedTunables = Object.keys(tunablesData.tunables).length;
 
         for (const [key, value] of Object.entries(tunablesData.tunables)) {
-            const hasName = lookupTunable(key, value);
-            if (!hasName && !Object.keys(tunablesWithoutNames).includes(key)) tunablesWithoutNames[key] = value;
+            const isNamed = lookupTunable(key, value, platform);
+            if (!isNamed) {
+                const isReversed = lookupTunable(key, value, platform, true);
+                if (!isReversed) {
+                    saveTunable('UNKNOWN', stripHexPrefix(key), value);
+                }
+            }
         };
 
-        for (const [key, value] of Object.entries(tunablesWithoutNames)) {
-            lookupTunable(key, value, true);
-        }
-
-        const main = beautify(JSON.stringify(omit(tunablesDataDecryptedJson, ['contentlists', 'tunables'])), { indent_size: 4 });
-        const contentlists = beautify(JSON.stringify({ contentlists: tunablesDataDecryptedJson.contentlists }), { indent_size: 4, wrap_line_length: 1, space_in_paren: true });
-        const tunables = beautify(jsonabc.sort(JSON.stringify({ tunables: tunablesDataDecryptedJson.tunables })), { indent_size: 4 });
-        fs.writeFileSync(decryptedPath, main.substring(0, main.length - 2)
-            .concat(',', contentlists.substring(1, contentlists.length - 2),
-                ',', tunables.substring(1, tunables.length - 1), '}'));
+        tunablesDataDecryptedJson.tunables = mapToObject(tunablesMap);
+        fs.writeFileSync(decryptedPath, JSON.stringify(tunablesDataDecryptedJson, null, 4));
         console.log(`\n${platform.toUpperCase()} Tunables Decrypted`);
         if (CONFIG.DEBUG) {
-            console.log('\nTotal Encrypted Tunables = ', Object.keys(tunablesData.tunables).length);
+            console.log('\nTotal Encrypted Tunables = ', totalEncryptedTunables);
             console.log('Total Decrypted Tunables = ', totalDecryptedTunables);
+            console.log('Total Unknown Tunables = ', totalEncryptedTunables - totalDecryptedTunables);
         } else {
-            fs.unlinkSync(encryptedPath);
             if (index === CONFIG.PLATFORMS.length - 1) {
                 fs.unlinkSync(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.DICTIONARY}`));
                 fs.unlinkSync(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
@@ -64,72 +60,83 @@ console.log('\nDone!');
 
 function getJobName(content) {
     if (content in dictionary.jobs) return dictionary.jobs[content];
-    return content.toString();
+    return content;
 }
 
-function lookupTunable(key, value, missingName = false) {
-    for (const [contextKey, contextValue] of Object.entries(dictionary.contexts)) {
+function saveTunable(contextKey, key, value) {
+    if (tunablesMap.get(contextKey)) tunablesMap.get(contextKey).set(key, value);
+    else tunablesMap.set(contextKey, new Map([[key, value]]));
+}
+
+function lookupTunable(key, value, platform, missingName = false) {
+    const keyWithoutPrefix = stripHexPrefix(key);
+
+    // TODO: Find a better way to do handle these edge cases
+    if (key.includes('8B7D3320')) {
+        return false;
+    }
+
+    if (key.includes('52BDAF86')) {
+        saveTunable('MP_Global', '_0x19EEFD4F', value);
+        totalDecryptedTunables++;
+        return true;
+    }
+
+    if (typeof value === 'number') {
+        const dictionaryKey = findKey(dictionary.other, x => x == value);
+        if (dictionaryKey) value = dictionaryKey.toUpperCase();
+        if (dictionaryKey && CONFIG.DEBUG) console.log(`found ${dictionaryKey} of hash ${value}`);
+    }
+
+    if (previousContext) {
+        const { contextKey, contextValue } = previousContext;
+
         if (missingName) {
-            const hashSigned = parseInt(key, 16) - contextValue.signed;
-            const hashUnsigned = parseInt(key, 16) - contextValue.unsigned;
-            const isHashInTuneablesProcessing = tuneablesProcessing.includes(hashSigned) || tuneablesProcessing.includes(hashUnsigned);
-            if (isHashInTuneablesProcessing) {
-                tunablesDataDecryptedStringified = stringify(tunablesDataDecryptedStringified, contextKey, key, value);
-                totalDecryptedTunables++;
-                return true;;
-            }
+            const hashSigned = parseInt(keyWithoutPrefix, 16) - contextValue.signed;
+            const reversedHash = '_0x'.concat((hashSigned >>> 0).toString(16).toLocaleUpperCase().padStart(8, '0'));
+            if (CONFIG.DEBUG) console.log(`Reversed key ${key} in ${contextKey} as ${reversedHash}`);
+            saveTunable(contextKey, reversedHash, value);
+            totalDecryptedTunables++;
+            return true;
         } else {
-            const dictionaryKey = findKey(dictionary.tunables, x => x.sum[contextKey].includes(key));
+            const dictionaryKey = findKey(dictionary.tunables, x => x.sum[contextKey].includes(keyWithoutPrefix));
             if (dictionaryKey) {
                 if (CONFIG.DEBUG) console.log(`found key ${key} in ${contextKey} as ${dictionaryKey}`);
                 const isRootContent = dictionaryKey.includes('ROOT_CONTENT_ID');
-                if (isRootContent) value[0].value = getJobName(value[0].value);
-                tunablesDataDecryptedStringified = stringify(tunablesDataDecryptedStringified, contextKey, dictionaryKey, value);
+                if (isRootContent) value = getJobName(value);
+                saveTunable(contextKey, dictionaryKey, value);
+                totalDecryptedTunables++;
+                return true;
+            }
+        }
+    }
+
+    for (const [contextKey, contextValue] of Object.entries(dictionary.contexts)) {
+        const isModifier = contextKey.includes('_MODIFIER_');
+        const isNextGen = ['xboxsx', 'ps5'].includes(platform);
+
+        if (!isNextGen && contextKey === 'MP_FM_MEMBERSHIP') return false;
+
+        if (missingName && !isModifier) {
+            const hashSigned = parseInt(keyWithoutPrefix, 16) - contextValue.signed;
+            const reversedHash = '_0x'.concat((hashSigned >>> 0).toString(16).toLocaleUpperCase().padStart(8, '0'));
+            if (CONFIG.DEBUG) console.log(`Reversed key ${key} in ${contextKey} as ${reversedHash}`);
+            saveTunable(contextKey, reversedHash, value);
+            previousContext = { contextKey, contextValue };
+            totalDecryptedTunables++;
+            return true;
+        } else {
+            const dictionaryKey = findKey(dictionary.tunables, x => x.sum[contextKey].includes(keyWithoutPrefix));
+            if (dictionaryKey) {
+                if (CONFIG.DEBUG) console.log(`found key ${key} in ${contextKey} as ${dictionaryKey}`);
+                const isRootContent = dictionaryKey.includes('ROOT_CONTENT_ID');
+                if (isRootContent) value = getJobName(value);
+                saveTunable(contextKey, dictionaryKey, value);
+                previousContext = { contextKey, contextValue };
                 totalDecryptedTunables++;
                 return true;
             }
         }
     }
     return false;
-}
-
-// Hacky workaround Node.js large string size limit when stringifying with JSON.stringify
-function stringify(mainString, context, key, value) {
-    let vValue = value[0].value;
-
-    if (typeof vValue === 'number') {
-        const dictionaryKey = findKey(dictionary.other, x => x == vValue);
-        if (dictionaryKey) vValue = dictionaryKey.toUpperCase();
-        if (dictionaryKey && CONFIG.DEBUG) console.log(`found ${dictionaryKey} of hash ${vValue}`);
-    }
-
-    set(tunablesDataDecryptedJson, `tunables.${context}.${key}`, vValue);
-    const valueString = ['boolean', 'number'].includes(typeof vValue) ? vValue : `"${vValue}"`;
-    if (mainString.includes(context)) {
-        const first = mainString.substring(0, mainString.indexOf(`"${context}":`));
-        const last = mainString.substring(mainString.indexOf(`"${context}":`));
-        return first.concat(last.replace('}', `,"${key}":${valueString}}`));
-    } else {
-        return mainString.concat(mainString.endsWith('{') ? '' : ',', `"${context}":{"${key}":${valueString}}`);
-    }
-}
-
-function findKey(obj, predicate = o => o) {
-    return Object.keys(obj).find(key => predicate(obj[key], key, obj));
-}
-
-function omit(obj, props) {
-    obj = { ...obj };
-    props.forEach(prop => delete obj[prop]);
-    return obj;
-}
-
-function set(obj, path, value) {
-    const pathArray = Array.isArray(path) ? path : path.match(/([^[.\]])+/g);
-
-    pathArray.reduce((acc, key, i) => {
-        if (acc[key] === undefined) acc[key] = {};
-        if (i === pathArray.length - 1) acc[key] = value;
-        return acc[key];
-    }, obj);
 }
