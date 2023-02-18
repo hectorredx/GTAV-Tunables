@@ -131,8 +131,6 @@ dist
 
 # local stuff
 local/
-
-# debugging files
-output/dictionary.json
-output/tuneables_processing.c
-output/tunables-encrypted.json
+src/static/dictionary.json
+src/static/tuneables_processing.c
+TODO.md
