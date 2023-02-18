@@ -50,7 +50,6 @@ CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 5 : 0).forEach((platform, index) => {
         } else {
             if (index === CONFIG.PLATFORMS.length - 1) {
                 fs.unlinkSync(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.DICTIONARY}`));
-                fs.unlinkSync(upath.normalize(`./src/static/${CONFIG.FILE_NAMES.TUNEABLES_PROCESSING}`));
             }
         }
     }
