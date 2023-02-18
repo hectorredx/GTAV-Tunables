@@ -1,3 +1,23 @@
+function set(obj, path, value) {
+    const pathArray = Array.isArray(path) ? path : path.match(/([^[.\]])+/g);
+
+    pathArray.reduce((acc, key, i) => {
+        if (acc[key] === undefined) acc[key] = {};
+        if (i === pathArray.length - 1) acc[key] = value;
+        return acc[key];
+    }, obj);
+}
+
+function omit(obj, props) {
+    obj = { ...obj };
+    props.forEach(prop => delete obj[prop]);
+    return obj;
+}
+
+function findKey(obj, predicate = o => o) {
+    return Object.keys(obj).find(key => predicate(obj[key], key, obj));
+}
+
 function mapToObject(m) {
     let lo = {}
     for (let [k, v] of m) {
@@ -27,6 +47,9 @@ function objectToMap(o) {
 const stripHexPrefix = (hex) => hex.substring(3, hex.length);
 
 module.exports = {
+    set,
+    omit,
+    findKey,
     mapToObject,
     objectToMap,
     stripHexPrefix,
