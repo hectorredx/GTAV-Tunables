@@ -91,7 +91,9 @@
                 },
             },
             async created() {
-                this.selectedPlatform = this.platforms[0];
+                const URI = window.location.search.substring(1);
+                const platform = (new URLSearchParams(URI)).get('platform');
+                this.selectedPlatform = this.platforms.includes(platform) ? platform : this.platforms[0];
                 this.encryptedJson = await this.getTunables(this.platforms[0], false);
                 this.decryptedJson = await this.getTunables(this.platforms[0]);
             },
