@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTAV Decrypted Tunables</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/json-formatter-js@2.3.4/dist/json-formatter.umd.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/json-formatter-js@2.3.4/dist/json-formatter.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans';
+            background-color: rgb(30, 30, 30);
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+        }
+
+        .platform-select {
+            margin-right: 16px;
+        }
+
+        .output {
+            display: flex;
+            align-items: flex-start;
+            width: 50%;
+            margin: 32px auto 0 auto;
+        }
+
+        .output--centered {
+            justify-content: center;
+        }
+
+        #decrypted-json,
+        #encrypted-json {
+            width: 50%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <h1 class="headline">GTAV Decrypted Tunables</h1>
+            <select v-model="selectedPlatform" name="platform" id="platform" class="platform-select">
+                <option v-for="platform in platforms" :value="platform" :key="platform">{{
+                    getLabel(platform) }}</option>
+            </select>
+            <input v-model="compare" type="checkbox" id="compare" name="compare">
+            <label for="compare"> Compare with encrypted</label><br>
+        </header>
+        <div :class="{ 'output':true, 'output--centered': !compare }">
+            <p v-show="compare" id="encrypted-json" />
+            <p id="decrypted-json" />
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue
+
+
+        createApp({
+            data() {
+                return {
+                    compare: false,
+                    selectedPlatform: null,
+                    platforms: ['pcros', 'ps5', 'xboxsx', 'xboxone', 'ps4'],
+                    encryptedJson: null,
+                    decryptedJson: null,
+                }
+            },
+            watch: {
+                async selectedPlatform() {
+                    document.getElementById('encrypted-json').innerHTML = '';
+                    this.encryptedJson = await this.getTunables(this.selectedPlatform, false);
+                    const encryptedJsonFormatter = new JSONFormatter(this.encryptedJson, 3, { theme: 'dark' });
+                    document.getElementById('encrypted-json').appendChild(encryptedJsonFormatter.render());
+                    document.getElementById('decrypted-json').innerHTML = '';
+                    this.decryptedJson = await this.getTunables(this.selectedPlatform);
+                    const decryptedJsonFormatter = new JSONFormatter(this.decryptedJson, 3, { theme: 'dark' });
+                    document.getElementById('decrypted-json').appendChild(decryptedJsonFormatter.render());
+                },
+            },
+            async created() {
+                this.selectedPlatform = this.platforms[0];
+                this.encryptedJson = await this.getTunables(this.platforms[0], false);
+                this.decryptedJson = await this.getTunables(this.platforms[0]);
+            },
+            methods: {
+                getTunables(platform, decrypted = true) {
+                    const url = `https://raw.githubusercontent.com/hectorredx/GTAV-Tunables/master/tunables-${platform}-${decrypted ? 'de' : 'en'}crypted.json`;
+                    return fetch(url).then(response => response.json())
+                        .then(data => data)
+                        .catch(error => console.error(error))
+                },
+                getLabel(key) {
+                    switch (key) {
+                        case 'xbox360':
+                            return 'XBOX 360';
+                            break;
+                        case 'xboxone':
+                            return 'XBOX One';
+                            break;
+                        case 'xboxsx':
+                            return 'XBOX SX';
+                            break;
+                        case 'ps3':
+                            return 'PS 3';
+                            break;
+                        case 'ps4':
+                            return 'PS 4';
+                            break;
+                        case 'ps5':
+                            return 'PS 5';
+                            break;
+                        case 'pcros':
+                            return 'PC';
+                            break;
+                        default:
+                            return key;
+                            break;
+                    }
+                },
+            }
+        }).mount('#app')
+    </script>
+</body>
+
+</html>
