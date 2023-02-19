@@ -2,7 +2,7 @@
 [![Decrypt Tunables](https://github.com/hectorredx/GTAV-Tunables/actions/workflows/decrypt.yml/badge.svg?event=workflow_dispatch)](https://github.com/hectorredx/GTAV-Tunables/actions/workflows/decrypt.yml)
 [![master](https://img.shields.io/github/last-commit/hectorredx/GTAV-Tunables/master?color=269ED5&label=updated)](https://github.com/hectorredx/GTAV-Tunables/commits/master)
 
-### Current Decrypted Tunables
+### [Current Decrypted Tunables](https://hectorredx.github.io/GTAV-Tunables/)
 - [PC](tunables-pcros-decrypted.json)
 - [XBOX SX](tunables-xboxsx-decrypted.json)
 - [PS5](tunables-ps5-decrypted.json)
