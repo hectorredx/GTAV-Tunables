@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
     <title>GTAV Decrypted Tunables</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/json-formatter-js@2.3.4/dist/json-formatter.umd.min.js"></script>
@@ -12,16 +13,91 @@
     <link href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yegor256/tacit@gh-pages/tacit-css-1.5.5.min.css" />
     <style>
+        @media (prefers-color-scheme: light) {
+            :root {
+                --body-bg: #FFFFFF;
+                --body-color: #000000;
+            }
+
+            body[data-theme="dark"] {
+                --body-bg: rgb(30, 30, 30);
+                --body-color: #FFFFFF;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --body-bg: rgb(30, 30, 30);
+                --body-color: #FFFFFF;
+            }
+
+            body[data-theme="light"] {
+                --body-bg: #FFFFFF;
+                --body-color: #000000;
+            }
+        }
+
+        .loading-spinner-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            pointer-events: none;
+            width: 2.5em;
+            height: 2.5em;
+            border: 0.4em solid transparent;
+            border-color: #eee;
+            border-top-color: #3E67EC;
+            border-radius: 50%;
+            animation: loadingspin 1s linear infinite;
+        }
+
+        @keyframes loadingspin {
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
         body {
             font-family: 'Open Sans';
-            background-color: rgb(30, 30, 30);
-            overflow-x: hidden;
+            background-color: var(--body-bg);
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mode-toggle {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .mode-toggle>button {
+            padding: 4px 8px;
         }
 
         header {
+            padding: 0;
             text-align: center;
-            color: white;
+        }
+
+        h1,
+        label {
+            color: var(--body-color);
+        }
+
+        form {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
         }
 
         .platform-select {
@@ -31,13 +107,14 @@
         .output {
             display: flex;
             align-items: flex-start;
-            width: 50%;
+            width: 62%;
             margin: 32px auto 0 auto;
             font-size: 1rem;
         }
 
         .output--centered {
             justify-content: center;
+            width: 52%;
         }
 
         #decrypted-json,
@@ -52,50 +129,59 @@
     </style>
 </head>
 
-<body>
+<body data-theme="dark">
     <div id="app">
-        <header>
-            <h1 class="headline">GTAV Decrypted Tunables</h1>
-            <select v-model="selectedPlatform" name="platform" id="platform" class="platform-select">
-                <option v-for="platform in platforms" :value="platform" :key="platform">{{
-                    getLabel(platform) }}</option>
-            </select>
-            <input v-model="compare" type="checkbox" id="compare" name="compare">
-            <label for="compare"> Compare with encrypted</label><br>
-        </header>
-        <div :class="{ 'output':true, 'output--centered': !compare }">
-            <p v-show="compare" id="encrypted-json" />
-            <p id="decrypted-json" />
+        <div v-show="isLoading" class="loading-spinner-container">
+            <div class="loading-spinner"></div>
+        </div>
+        <div v-show="!isLoading" :data-theme="isDarkMode ? 'dark' : 'light'">
+            <header>
+                <div class="mode-toggle">
+                    <button type="button" title="Toggle Theme" @click="toggleMode">{{ isDarkMode ? '🌞' : '🌒'
+                        }}</button>
+                </div>
+                <h1 class="headline">GTAV Decrypted Tunables</h1>
+                <form>
+                    <select v-model="selectedPlatform" name="platform" id="platform" class="platform-select">
+                        <option v-for="platform in platforms" :value="platform" :key="platform">{{
+                            getLabel(platform) }}</option>
+                    </select>
+                    <input v-model="compare" type="checkbox" id="compare" name="compare">
+                    <label for="compare"> Compare with encrypted</label><br>
+                </form>
+            </header>
+            <div :class="{ 'output':true, 'output--centered': !compare }">
+                <p v-show="compare" id="encrypted-json" />
+                <p id="decrypted-json" />
+            </div>
         </div>
     </div>
 
     <script>
-        const { createApp } = Vue
-
+        const { createApp } = Vue;
 
         createApp({
             data() {
                 return {
+                    isLoading: false,
+                    isDarkMode: true,
                     compare: false,
                     selectedPlatform: null,
-                    platforms: ['pcros', 'ps5', 'xboxsx', 'xboxone', 'ps4'],
+                    platforms: ['pcros', 'ps5', 'xboxsx', 'ps4', 'xboxone'],
                     encryptedJson: null,
                     decryptedJson: null,
                 }
             },
             watch: {
-                async selectedPlatform() {
-                    document.getElementById('encrypted-json').innerHTML = '';
-                    this.encryptedJson = await this.getTunables(this.selectedPlatform, false);
-                    const encryptedJsonFormatter = new JSONFormatter(this.encryptedJson, 3, { theme: 'dark' });
-                    document.getElementById('encrypted-json').appendChild(encryptedJsonFormatter.render());
-                    document.getElementById('decrypted-json').innerHTML = '';
-                    this.decryptedJson = await this.getTunables(this.selectedPlatform);
-                    const decryptedJsonFormatter = new JSONFormatter(this.decryptedJson, 3, { theme: 'dark' });
-                    document.getElementById('decrypted-json').appendChild(decryptedJsonFormatter.render());
+                selectedPlatform() {
+                    this.showTunables();
                 },
+                isDarkMode() {
+                    this.showTunables();
+                }
             },
             async created() {
+                // this.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 const URI = window.location.search.substring(1);
                 const platform = (new URLSearchParams(URI)).get('platform');
                 this.selectedPlatform = this.platforms.includes(platform) ? platform : this.platforms[0];
@@ -104,24 +190,36 @@
             },
             methods: {
                 getTunables(platform, decrypted = true) {
+                    this.isLoading = true;
                     const url = `https://raw.githubusercontent.com/hectorredx/GTAV-Tunables/master/tunables-${platform}-${decrypted ? 'de' : 'en'}crypted.json`;
                     return fetch(url).then(response => response.json())
                         .then(data => data)
                         .catch(error => console.error(error))
+                        .finally(() => this.isLoading = false);
+                },
+                async showTunables() {
+                    const jsonFormatterOptions = this.isDarkMode ? { theme: 'dark' } : {};
+                    document.getElementById('encrypted-json').innerHTML = '';
+                    this.encryptedJson = await this.getTunables(this.selectedPlatform, false);
+                    const encryptedJsonFormatter = new JSONFormatter(this.encryptedJson, 3, jsonFormatterOptions);
+                    document.getElementById('encrypted-json').appendChild(encryptedJsonFormatter.render());
+                    document.getElementById('decrypted-json').innerHTML = '';
+                    this.decryptedJson = await this.getTunables(this.selectedPlatform);
+                    const decryptedJsonFormatter = new JSONFormatter(this.decryptedJson, 3, jsonFormatterOptions);
+                    document.getElementById('decrypted-json').appendChild(decryptedJsonFormatter.render());
+                },
+                toggleMode() {
+                    const $body = document.getElementsByTagName('body')[0];
+                    $body.setAttribute('data-theme', $body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+                    this.isDarkMode = !this.isDarkMode;
                 },
                 getLabel(key) {
                     switch (key) {
-                        case 'xbox360':
-                            return 'XBOX 360';
-                            break;
                         case 'xboxone':
                             return 'XBOX One';
                             break;
                         case 'xboxsx':
                             return 'XBOX SX';
-                            break;
-                        case 'ps3':
-                            return 'PS 3';
                             break;
                         case 'ps4':
                             return 'PS 4';
