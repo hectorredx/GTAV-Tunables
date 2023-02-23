@@ -1,6 +1,6 @@
 {
   "name": "tunables-gtav",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Downloads and decrypts the latest tunables file.",
   "main": "src/index.js",
   "author": "ECB2",
