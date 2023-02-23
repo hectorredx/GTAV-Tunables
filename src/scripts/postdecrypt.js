@@ -1,8 +1,13 @@
 const fs = require('fs');
 const upath = require('upath');
+const LRUCache = require('lru-cache');
 const { findKey, mapToObject, stripHexPrefix } = require('../utils');
 const CONFIG = require('../config');
 const dictionary = require(upath.normalize(`../static/${CONFIG.FILE_NAMES.DICTIONARY}`));
+
+const cache = new LRUCache({
+    max: 3000,
+});
 
 let tunablesDataDecryptedJson = {};
 let totalDecryptedTunables;
@@ -58,11 +63,16 @@ CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 5 : 0).forEach((platform, index) => {
 console.log('\nDone!');
 
 function getJobName(content) {
-    if (content in dictionary.jobs) return dictionary.jobs[content];
+    if (cache.get(content)) return cache.get(content);
+    if (content in dictionary.jobs) {
+        cache.set(content, dictionary.jobs[content]);
+        return dictionary.jobs[content];
+    }
     return content;
 }
 
 function saveTunable(contextKey, key, value) {
+    cache.set(key, { tunableKey: key, contextKey });
     if (tunablesMap.get(contextKey)) tunablesMap.get(contextKey).set(key, value);
     else tunablesMap.set(contextKey, new Map([[key, value]]));
 }
@@ -82,9 +92,22 @@ function lookupTunable(key, value, platform, missingName = false) {
     }
 
     if (typeof value === 'number') {
-        const dictionaryKey = findKey(dictionary.other, x => x == value);
-        if (dictionaryKey) value = dictionaryKey.toUpperCase();
+        const dictionaryKey = cache.get(value) ?? findKey(dictionary.other, x => x == value);
+        if (dictionaryKey) {
+            value = dictionaryKey.toUpperCase();
+            cache.set(value, dictionaryKey);
+        }
         if (dictionaryKey && CONFIG.DEBUG) console.log(`found ${dictionaryKey} of hash ${value}`);
+    }
+
+    if (cache.get(key)) {
+        const { tunableKey, contextKey } = cache.get(key);
+        if (CONFIG.DEBUG) console.log(`found key ${key} as ${tunableKey} under ${contextKey} in cache`);
+        const isRootContent = tunableKey.includes('ROOT_CONTENT_ID');
+        if (isRootContent) value = getJobName(value);
+        saveTunable(contextKey, tunableKey, value);
+        totalDecryptedTunables++;
+        return true;
     }
 
     if (previousContext) {
@@ -139,3 +162,5 @@ function lookupTunable(key, value, platform, missingName = false) {
     }
     return false;
 }
+
+cache.clear();

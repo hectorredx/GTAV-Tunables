@@ -16,6 +16,7 @@
     "http-wrapper": "git+https://github.com/MikeRohsoft/mikes-node-www.git",
     "https": "^1.0.0",
     "js-beautify": "^1.14.7",
+    "lru-cache": "^7.17.0",
     "upath": "^2.0.1"
   }
 }
