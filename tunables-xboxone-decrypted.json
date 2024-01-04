@@ -815,13 +815,13 @@
             "ENABLE_PLAYED_WITH_METRIC": true,
             "SCRIPT_MP_TIMEOUT": 140000,
             "SCRIPT_MP_TIMEOUT_SHORT": 90000,
-            "SCRIPT_MP_TIMEOUT_LONG": 180000,
-            "_0xAEFA15D8": true,
-            "_0x70DF2275": true,
-            "_0x96A62B34": true,
-            "_0x3E88DA7A": false
+            "SCRIPT_MP_TIMEOUT_LONG": 180000
         },
         "CD_GLOBAL": {
+            "ENABLE_SAVE_MIGRATION": true,
+            "_0xC5FE0EEF": true,
+            "_0xEBC517AE": true,
+            "_0x93A7C6F4": false,
             "TUNABLE_VERSION": 380,
             "EVENT_WKLY": 380
         },

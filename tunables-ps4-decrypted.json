@@ -815,17 +815,17 @@
             "ENABLE_PLAYED_WITH_METRIC": true,
             "SCRIPT_MP_TIMEOUT": 140000,
             "SCRIPT_MP_TIMEOUT_SHORT": 90000,
-            "SCRIPT_MP_TIMEOUT_LONG": 180000,
-            "_0xAEFA15D8": true,
-            "_0x70DF2275": true,
-            "_0x96A62B34": true,
-            "_0x3E88DA7A": false
+            "SCRIPT_MP_TIMEOUT_LONG": 180000
         },
         "CD_GLOBAL": {
+            "ENABLE_SAVE_MIGRATION": true,
+            "_0xC5FE0EEF": true,
+            "_0xEBC517AE": true,
+            "_0x93A7C6F4": false,
             "NETWORK_TIME_OUT": 15000,
             "TUNABLE_VERSION": 380,
-            "_0xF5B368D5": true,
-            "_0x4AE5B4D0": false,
+            "PLUS_EVENT_IS_ENABLED": true,
+            "PLUS_PROMOTION_DISABLE_PAUSE_STORE_REDIRECT": false,
             "EVENT_WKLY": 380
         },
         "CONTENT_MODIFIER_0": {
