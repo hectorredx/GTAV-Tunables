@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "aes-js": "^2.1.1",
-    "http-wrapper": "git+https://github.com/MikeRohsoft/mikes-node-www.git",
     "https": "^1.0.0",
     "js-beautify": "^1.14.7",
     "lru-cache": "^7.17.0",

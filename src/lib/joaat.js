@@ -26,6 +26,15 @@ function hex(i) {
     return i.toString(16).toUpperCase();
 }
 
+// This is a dumb cache.
+const cache = {};
+function cached(s) {
+    if (cache[s]) {
+        return cache[s];
+    }
+    return cache[s] = joaat(s);
+}
+
 function joaat(s, c = null, m = 1/*1|-1*/) {
     s = unescape(encodeURIComponent(s.toLowerCase()));
 
@@ -48,8 +57,11 @@ function joaat(s, c = null, m = 1/*1|-1*/) {
     return {
         signed: hash,
         unsigned: uint,
-        hex: hex(uint),
     };
 }
 
-module.exports = joaat
+cached.hex = hex;
+cached.cache = cache;
+cached.real = joaat;
+
+module.exports = cached

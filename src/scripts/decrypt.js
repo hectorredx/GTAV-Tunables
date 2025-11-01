@@ -1,9 +1,9 @@
 const fs = require('fs');
 const upath = require('upath');
-const http = require('http-wrapper');
 const { js_beautify: beautify } = require('js-beautify');
 const aesjs = require('aes-js');
 const CONFIG = require('../config');
+const { get } = require('../utils/http');
 
 const key = Buffer.from(CONFIG.KEY, 'hex');
 
@@ -21,10 +21,13 @@ function decryptTunablesToHex(encrypted, platform) {
             }, null, 4);
 };
 
-CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 5 : 0).forEach(platform => {
+console.profile("decrypt");
+console.log("Getting tunables and UnAES-ing ...")
+CONFIG.PLATFORMS.slice(0).forEach(platform => {
     const url = CONFIG.URLS.TUNABLES.replace(new RegExp('{platform}', 'g'), platform);
     const path = upath.normalize(`./${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
-    return http.get(url).then(res => {
-        fs.writeFile(path, beautify(decryptTunablesToHex(res.content, platform)), null, () => { if (CONFIG.DEBUG) console.log(`${platform.toUpperCase()} Encrypted Tunables downloaded`); });
+    return get(url).then(({ buffer }) => {
+        fs.writeFile(path, beautify(decryptTunablesToHex(buffer, platform)), null, () => { if (CONFIG.DEBUG) console.log(`${platform.toUpperCase()} Encrypted [hex] Tunables downloaded`); });
     })
 });
+console.profileEnd("decrypt");

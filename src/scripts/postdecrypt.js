@@ -1,9 +1,15 @@
 const fs = require('fs');
 const upath = require('upath');
 const LRUCache = require('lru-cache');
-const { findKey, mapToObject, stripHexPrefix } = require('../utils');
+const { findKey, mapToObject, stripHexPrefix, invertOther, findOtherKey, invertTunablesSum, findTunablesSumKey } = require('../utils');
 const CONFIG = require('../config');
 const dictionary = require(upath.normalize(`../static/${CONFIG.FILE_NAMES.DICTIONARY}`));
+
+const iother = invertOther(dictionary.other);
+const isum = invertTunablesSum(dictionary.tunables);
+
+delete dictionary.other;
+delete dictionary.tunables;
 
 const cache = new LRUCache({
     max: 3000,
@@ -14,9 +20,10 @@ let totalDecryptedTunables;
 let previousContext = null;
 let tunablesMap = new Map();
 
-console.log('Decrypting ...');
+console.log('Decoding the decrypted dump ...');
 
-CONFIG.PLATFORMS.slice(CONFIG.DEBUG ? 5 : 0).forEach((platform, index) => {
+console.profile("postdecrypt");
+CONFIG.PLATFORMS.slice(0).forEach((platform, index) => {
     const encryptedPath = upath.normalize(`./${CONFIG.FILE_NAMES.ENCRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
     const decryptedPath = upath.normalize(`./${CONFIG.FILE_NAMES.DECRYPTED}`.replace(new RegExp('{platform}', 'g'), platform));
 
@@ -81,18 +88,18 @@ function lookupTunable(key, value, platform, missingName = false) {
     const keyWithoutPrefix = stripHexPrefix(key);
 
     // TODO: Find a better way to do handle these edge cases
-    if (key.includes('8B7D3320')) {
+    if (key == '8B7D3320') {
         return false;
     }
 
-    if (key.includes('52BDAF86')) {
+    if (key == '52BDAF86') {
         saveTunable('MP_Global', '_0x19EEFD4F', value);
         totalDecryptedTunables++;
         return true;
     }
 
     if (typeof value === 'number') {
-        const dictionaryKey = cache.get(value) ?? findKey(dictionary.other, x => x == value);
+        const dictionaryKey = cache.get(value) ?? findOtherKey(iother, value);
         if (dictionaryKey) {
             value = dictionaryKey.toUpperCase();
             cache.set(value, dictionaryKey);
@@ -116,12 +123,13 @@ function lookupTunable(key, value, platform, missingName = false) {
         if (missingName) {
             const hashSigned = parseInt(keyWithoutPrefix, 16) - contextValue.signed;
             const reversedHash = '_0x'.concat((hashSigned >>> 0).toString(16).toLocaleUpperCase().padStart(8, '0'));
-            if (CONFIG.DEBUG) console.log(`Reversed key ${key} in ${contextKey} as ${reversedHash}`);
-            saveTunable(contextKey, reversedHash, value);
+            const key2 = findOtherKey(iother, hashSigned);
+            if (CONFIG.DEBUG) console.log(`Reversed key ${key} in ${contextKey} as ${reversedHash} [${key2 ? key2 : '?'}]`);
+            saveTunable(contextKey, reversedHash, { v: value, k: key2 });
             totalDecryptedTunables++;
             return true;
         } else {
-            const dictionaryKey = findKey(dictionary.tunables, x => x.sum[contextKey].includes(keyWithoutPrefix));
+            const dictionaryKey = findTunablesSumKey(isum, contextKey, keyWithoutPrefix);
             if (dictionaryKey) {
                 if (CONFIG.DEBUG) console.log(`found key ${key} in ${contextKey} as ${dictionaryKey}`);
                 const isRootContent = dictionaryKey.includes('ROOT_CONTENT_ID');
@@ -142,13 +150,14 @@ function lookupTunable(key, value, platform, missingName = false) {
         if (missingName && !isModifier) {
             const hashSigned = parseInt(keyWithoutPrefix, 16) - contextValue.signed;
             const reversedHash = '_0x'.concat((hashSigned >>> 0).toString(16).toLocaleUpperCase().padStart(8, '0'));
-            if (CONFIG.DEBUG) console.log(`Reversed key ${key} in ${contextKey} as ${reversedHash}`);
-            saveTunable(contextKey, reversedHash, value);
+            const key2 = findOtherKey(iother, hashSigned);
+            if (CONFIG.DEBUG) console.log(`Reversed key ${key} in ${contextKey} as ${reversedHash} [${key2 ? key2 : '?'}]`);
+            saveTunable(contextKey, reversedHash, { v: value, k: key2 });
             previousContext = { contextKey, contextValue };
             totalDecryptedTunables++;
             return true;
         } else {
-            const dictionaryKey = findKey(dictionary.tunables, x => x.sum[contextKey].includes(keyWithoutPrefix));
+            const dictionaryKey = findTunablesSumKey(isum, contextKey, keyWithoutPrefix);
             if (dictionaryKey) {
                 if (CONFIG.DEBUG) console.log(`found key ${key} in ${contextKey} as ${dictionaryKey}`);
                 const isRootContent = dictionaryKey.includes('ROOT_CONTENT_ID');
@@ -162,5 +171,5 @@ function lookupTunable(key, value, platform, missingName = false) {
     }
     return false;
 }
-
+console.profileEnd("postdecrypt");
 cache.clear();

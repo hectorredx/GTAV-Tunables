@@ -1,5 +1,6 @@
 module.exports = {
-    DEBUG: false,
+    DEBUG: true,
+    REBUILD_DICTIONARY: false,
     KEY: 'F06F12F49B843DADE4A7BE053505B19C9E415C95D93753450A269144D59A0115',
     PLATFORMS: ['xbox360', 'xboxone', 'xboxsx', 'ps3', 'ps4', 'ps5', 'pcros'],
     URLS: {
